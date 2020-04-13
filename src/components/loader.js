@@ -12,14 +12,10 @@ const Spinner = styled(Spin)`
     &-container {
       height: 100%;
     }
+  }
 
-    &-nested-loading {
-      width: 100%;
-
-      > div > .ant-spin {
-        max-height: 100%;
-      }
-    }
+  .ant-spin-nested-loading > div > & {
+    max-height: 100%;
   }
 `;
 

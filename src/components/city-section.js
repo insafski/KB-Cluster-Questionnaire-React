@@ -3,15 +3,14 @@ import styled from "styled-components";
 
 import Section from "./section";
 import { Button } from "antd";
+import { HashLink as Link } from "react-router-hash-link";
 
 const Container = styled(Section)`
-  padding-top: 12.5rem;
+  flex-direction: column;
+  justify-content: center;
 
   h1 {
     margin-bottom: 3rem;
-    font-weight: bold;
-    font-size: 4.5rem;
-    line-height: 1.2;
   }
 
   p {
@@ -44,10 +43,12 @@ const CitySection = ({ data }) => {
   const { Name } = data ?? {};
 
   return (
-    <Container>
+    <Container id="city">
       <h1>{Name}</h1>
       <p>{Description}</p>
-      <Button type="primary">Перейти к опросу</Button>
+      <Link smooth to="#participate">
+        <Button type="primary">Перейти к опросу</Button>
+      </Link>
     </Container>
   );
 };

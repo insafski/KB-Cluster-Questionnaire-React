@@ -1,15 +1,29 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { Helmet } from "react-helmet";
-import { Spin } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
 
 import Main from "./main";
-// import Questions from "./questions";
 import { useQuery } from "@apollo/react-hooks";
 import { CITY_QUERY } from "../queries";
+import { StateContext } from "../context";
+import Loader from "../components/loader";
+import Questions from "./questions";
 
+const GlobalStyle = createGlobalStyle`
+  h1,
+  h2 {
+    font-weight: bold;
+  }
+  
+  h1 {
+    font-size: 4.5rem;
+  }
+  
+  h2 {
+    font-size: 3rem;
+  }
+`;
 const Container = styled.div`
   height: 100vh;
   width: 100%;
@@ -20,6 +34,15 @@ const App = () => {
   const { data, loading, error } = useQuery(CITY_QUERY, {
     variables: { slug }
   });
+  const { dispatch } = useContext(StateContext);
+
+  useEffect(() => {
+    data &&
+      dispatch({
+        type: "CHANGE_TERRITORY",
+        payload: data?.territories?.[0]?.id
+      });
+  }, [dispatch, data]);
 
   if (error) {
     return <p>{`Ошибка: ${error.message}`}</p>;
@@ -36,7 +59,8 @@ const App = () => {
         <meta name="description" content={!loading ? title : ""} />
         <title>{!loading ? title : ""}</title>
       </Helmet>
-      <Spin spinning={loading} indicator={<LoadingOutlined spin />}>
+      <GlobalStyle />
+      <Loader spinning={loading}>
         <Container>
           {data && (
             <Switch>
@@ -45,11 +69,11 @@ const App = () => {
                 exact
                 render={() => <Main {...{ data, title }} />}
               />
-              {/*<Route path="/form" exact component={Questions} />*/}
+              <Route path="/form" exact component={Questions} />
             </Switch>
           )}
         </Container>
-      </Spin>
+      </Loader>
     </Router>
   );
 };

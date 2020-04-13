@@ -4,7 +4,21 @@ import ReactMarkdown from "react-markdown";
 import { Statistic } from "antd";
 
 const Container = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 12.5rem;
+
+  .ant-statistic {
+    :last-child {
+      margin-top: 4rem;
+    }
+
+    &-content-value {
+      font-weight: 500;
+      font-size: 3.5rem;
+      line-height: 1.2;
+    }
+  }
 `;
 
 const renderers = {

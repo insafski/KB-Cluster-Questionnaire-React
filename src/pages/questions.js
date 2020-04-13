@@ -2,53 +2,23 @@ import React from "react";
 import styled from "styled-components";
 import FormBuilder from "antd-form-builder";
 import { Button, Form } from "antd";
+import Card from "../components/card";
 
 const Container = styled.div`
-  display: grid;
-  grid-template-areas: "left right";
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
   height: 100vh;
   width: 100%;
 `;
-const LeftPanel = styled.div`
-  grid-area: left;
-  background-image: url(${({ image }) => image});
-  background-size: 80%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: #ededed;
-`;
-const RightPanel = styled.div`
-  grid-area: right;
-  padding: 2rem 3rem 4rem;
-  background-color: #535353;
-  color: #ffffff;
+const InnerContainer = styled.div`
+  margin: 0 auto;
+  padding: 0 2rem;
+  max-width: 44rem;
+  width: 100%;
+  height: 100%;
 
-  p {
-    font-weight: normal;
-    font-size: 1.125rem;
-    line-height: 1.2;
-    letter-spacing: 0.03em;
-    color: #ded8d8;
-  }
-
-  h1 {
-    margin-bottom: 1rem;
-    font-weight: bold;
-    font-size: 2.625rem;
-    line-height: 1.12;
-    color: #ffffff;
+  .ant-input {
+    color: #000;
   }
 `;
-// const InnerContainer = styled.div`
-//   display: flex;
-//   height: 100%;
-//   background-color: #232323;
-// `;
-// const ImageContainer = styled.div`
-//   width: 100%;
-// `;
 const ScrollContainer = styled.div`
   max-height: 100%;
   overflow-y: scroll;
@@ -80,19 +50,20 @@ const Questions = () => {
 
   return (
     <Container>
-      <LeftPanel />
-      <RightPanel>
+      <InnerContainer>
         <ScrollContainer>
-          <Form {...{ form, onValuesChange, onFinish }}>
-            <FormBuilder {...{ form, meta }} />
-            <Form.Item>
-              <Button type="primary" htmlType="submit">
-                Отправить
-              </Button>
-            </Form.Item>
-          </Form>
+          <Card>
+            <Form {...{ form, onValuesChange, onFinish }}>
+              <FormBuilder {...{ form, meta }} />
+              <Form.Item>
+                <Button type="primary" htmlType="submit">
+                  Отправить
+                </Button>
+              </Form.Item>
+            </Form>
+          </Card>
         </ScrollContainer>
-      </RightPanel>
+      </InnerContainer>
     </Container>
   );
 };

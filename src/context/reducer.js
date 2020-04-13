@@ -2,20 +2,10 @@ const reducer = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case "CHANGE_GL":
+    case "CHANGE_TERRITORY":
       return {
         ...state,
-        gl: payload
-      };
-    case "CHANGE_LOCALE":
-      return {
-        ...state,
-        locale: payload
-      };
-    case "CHANGE_LAYERS":
-      return {
-        ...state,
-        layers: { ...state.layers, ...payload }
+        territory: payload
       };
     default:
       return state;
