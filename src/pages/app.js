@@ -7,8 +7,7 @@ import Main from "./main";
 import { useQuery } from "@apollo/react-hooks";
 import { CITY_QUERY } from "../queries";
 import { StateContext } from "../context";
-import Loader from "../components/loader";
-import Questions from "./questions";
+import Survey from "./survey";
 
 const GlobalStyle = createGlobalStyle`
   h1,
@@ -60,20 +59,24 @@ const App = () => {
         <title>{!loading ? title : ""}</title>
       </Helmet>
       <GlobalStyle />
-      <Loader spinning={loading}>
-        <Container>
-          {data && (
-            <Switch>
-              <Route
-                path="/"
-                exact
-                render={() => <Main {...{ data, title }} />}
-              />
-              <Route path="/form" exact component={Questions} />
-            </Switch>
-          )}
-        </Container>
-      </Loader>
+      <Container>
+        {data && (
+          <Switch>
+            <Route
+              path="/"
+              exact
+              render={({ location }) => (
+                <Main {...{ data, title, loading, location }} />
+              )}
+            />
+            <Route
+              path="/:territory/form"
+              exact
+              render={({ match }) => <Survey {...{ title, match }} />}
+            />
+          </Switch>
+        )}
+      </Container>
     </Router>
   );
 };

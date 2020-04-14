@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { Tabs } from "antd";
 import styled from "styled-components";
 
-import Section from "./section";
+import Section from "../section";
 import Tab from "./tab";
-import { StateContext } from "../context";
+import { StateContext } from "../../context";
 
 const { TabPane } = Tabs;
 
@@ -12,8 +12,16 @@ const Container = styled(Section)`
   flex-direction: column;
   justify-content: center;
 
-  .ant-tabs-bar {
-    margin-bottom: 4rem;
+  .ant-tabs {
+    color: #fff;
+
+    & .ant-tabs-tabpane {
+      height: 100%;
+    }
+
+    &-bar {
+      margin-bottom: 4rem;
+    }
   }
 
   h2 {
@@ -21,7 +29,7 @@ const Container = styled(Section)`
   }
 `;
 
-const TerritorySection = ({ data }) => {
+const Index = ({ data }) => {
   const { dispatch } = useContext(StateContext);
 
   return (
@@ -45,4 +53,4 @@ const TerritorySection = ({ data }) => {
   );
 };
 
-export default TerritorySection;
+export default Index;

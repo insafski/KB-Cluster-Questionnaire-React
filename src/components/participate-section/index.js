@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-
-import Section from "../section";
-import { Button } from "antd";
-import Video from "./video";
 import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
+
+import Section from "../section";
+import Video from "./video";
+import SurveyButton from "../survey-button";
 
 const Container = styled(Section)`
   flex-direction: column;
@@ -34,34 +34,18 @@ const Container = styled(Section)`
       }
     }
   }
-
-  .ant-btn-primary {
-    padding-left: 3rem;
-    padding-right: 3rem;
-    height: 4rem;
-    border-radius: 2rem;
-    font-weight: 500;
-    font-size: 1.125rem;
-    line-height: 1.12;
-    color: #494949;
-
-    :active,
-    :hover,
-    :focus {
-      background-color: #dedede;
-    }
-  }
 `;
 
 const VideoContainer = styled.div`
   display: grid;
+  align-items: flex-start;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 12.5rem;
   margin-bottom: 4rem;
 `;
 
 const ParticipateSection = ({ data }) => {
-  const { Name, Description, PresentationVideoLink } = data ?? {};
+  const { Name, Description, PresentationVideoLink, slug } = data ?? {};
 
   return (
     <Container id="participate">
@@ -76,8 +60,8 @@ const ParticipateSection = ({ data }) => {
           ))}
         </ul>
       </VideoContainer>
-      <Link to="/form">
-        <Button type="primary">Перейти к опросу</Button>
+      <Link to={`${slug ? `/${slug}` : ""}/form`}>
+        <SurveyButton>Перейти к опросу</SurveyButton>
       </Link>
     </Container>
   );

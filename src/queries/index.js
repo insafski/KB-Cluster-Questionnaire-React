@@ -25,4 +25,16 @@ const CITY_QUERY = gql`
   }
 `;
 
-export { CITY_QUERY };
+const FORM_QUERY = gql`
+  query FormQuery($slug: String) {
+    territories(where: { slug_eq: $slug }) {
+      id
+      Name
+      Description
+      Questions
+      slug
+    }
+  }
+`;
+
+export { CITY_QUERY, FORM_QUERY };

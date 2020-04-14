@@ -14,6 +14,12 @@ const Container = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+
+  ::before {
+    content: "";
+    padding-top: 56.25%;
+    height: 0;
+  }
 `;
 
 const Video = ({ link }) => (

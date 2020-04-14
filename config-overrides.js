@@ -15,9 +15,8 @@ module.exports = override(
       )}";`,
       ...darkThemeVars,
       "@font-family": '"Inter", sans-serif',
-      "@primary-color": "#fff"
-      // "@popover-background": "#2a323a",
-      // "@border-color-split": "#656e76"
+      "@primary-color": "#fff",
+      "@label-color": "#000"
     }
   })
 );

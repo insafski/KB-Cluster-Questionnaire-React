@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { HashLink as Link } from "react-router-hash-link";
 
 import Section from "./section";
-import { Button } from "antd";
-import { HashLink as Link } from "react-router-hash-link";
+import SurveyButton from "./survey-button";
 
 const Container = styled(Section)`
   flex-direction: column;
@@ -26,7 +26,11 @@ const Container = styled(Section)`
     font-weight: 500;
     font-size: 1.125rem;
     line-height: 1.12;
-    color: #494949;
+
+    &,
+    & span {
+      color: #494949;
+    }
 
     :active,
     :hover,
@@ -44,7 +48,7 @@ const CitySection = ({ data }) => {
       <h1>{Name || "Нет названия"}</h1>
       <p>{Description || "Нет описания"}</p>
       <Link smooth to="#participate">
-        <Button type="primary">Перейти к опросу</Button>
+        <SurveyButton>Перейти к опросу</SurveyButton>
       </Link>
     </Container>
   );
