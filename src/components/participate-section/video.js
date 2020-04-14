@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-
-import video from "../../images/video.jpg";
 import { Button } from "antd";
 import { RightCircleOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
+
+import video from "../../images/video.jpg";
 
 const Container = styled.div`
   display: flex;
@@ -15,11 +16,13 @@ const Container = styled.div`
   background-size: cover;
 `;
 
-const Video = () => (
+const Video = ({ link }) => (
   <Container bgImage={video}>
-    <Button type="link">
-      Посмотреть презентацию <RightCircleOutlined />
-    </Button>
+    <Link to={link || ""}>
+      <Button type="link">
+        Посмотреть презентацию <RightCircleOutlined />
+      </Button>
+    </Link>
   </Container>
 );
 

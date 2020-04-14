@@ -32,8 +32,15 @@ const Tab = ({ data }) => {
 
   return (
     <Container>
-      <ReactMarkdown source={Description} />
-      <ReactMarkdown source={LeadMapMeta} {...{ renderers }} />
+      <div>
+        <ReactMarkdown source={Description || "Нет описания"} />
+      </div>
+      <div>
+        <ReactMarkdown
+          source={LeadMapMeta || "Нет данных"}
+          {...{ renderers }}
+        />
+      </div>
     </Container>
   );
 };

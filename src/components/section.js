@@ -6,6 +6,7 @@ import InnerContainer from "./inner-container";
 const Container = styled.div`
   display: flex;
   min-height: 100vh;
+  padding: 6rem 0;
   scroll-snap-align: start;
   background-color: ${({ bgColor }) => bgColor};
 

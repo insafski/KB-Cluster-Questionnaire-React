@@ -5,11 +5,12 @@ import styled from "styled-components";
 import InnerContainer from "./inner-container";
 
 const Container = styled.header`
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 1;
   padding-top: 1.125rem;
   padding-bottom: 1.125rem;
+  width: 100%;
   color: #000;
   background-color: #fff;
 

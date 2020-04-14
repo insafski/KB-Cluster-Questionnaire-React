@@ -1,16 +1,23 @@
 import React from "react";
 import styled from "styled-components";
+import ReactMarkdown from "react-markdown";
 
 import Section from "./section";
-import map from "../images/map.jpg";
 
 const Container = styled(Section)`
   flex-direction: column;
-  background-image: url(${({ bgImage }) => bgImage});
+  padding-top: 8rem;
+  background-image: linear-gradient(
+      90deg,
+      rgba(245, 245, 247, 0.75) 0%,
+      rgba(245, 245, 247, 0.75) 100%
+    ),
+    url(${({ bgImage }) => bgImage});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  padding-top: 8rem;
+  background-color: #f5f5f7;
+  filter: grayscale(100%);
 
   h2 {
     max-width: 60%;
@@ -25,16 +32,15 @@ const Container = styled(Section)`
   }
 `;
 
-const Description =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-
 const MapSection = ({ data }) => {
-  const { Name } = data ?? {};
+  const { Name, Description, LeadMap } = data ?? {};
+  const baseUrl = process.env.REACT_APP_STRAPI_ENDPOINT.replace("/graphql", "");
+  const url = LeadMap?.url ? baseUrl + LeadMap.url : "";
 
   return (
-    <Container id="map" bgImage={map}>
-      <h2>{Name}</h2>
-      <p>{Description}</p>
+    <Container id="map" bgImage={url}>
+      <h2>{Name || "Нет названи"}</h2>
+      <ReactMarkdown>{Description || "Нет описания"}</ReactMarkdown>
     </Container>
   );
 };

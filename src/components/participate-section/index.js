@@ -5,6 +5,7 @@ import Section from "../section";
 import { Button } from "antd";
 import Video from "./video";
 import { Link } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 
 const Container = styled(Section)`
   flex-direction: column;
@@ -59,21 +60,19 @@ const VideoContainer = styled.div`
   margin-bottom: 4rem;
 `;
 
-const Description =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
-
 const ParticipateSection = ({ data }) => {
-  const { Name } = data ?? {};
+  const { Name, Description, PresentationVideoLink } = data ?? {};
 
   return (
     <Container id="participate">
-      <h2>{`Примите участие в разработке проекта: ${Name}`}</h2>
-      <p>{Description}</p>
+      <h2>{`Примите участие в разработке проекта: ${Name ||
+        "Нет названия"}`}</h2>
+      <ReactMarkdown source={Description || "Нет описания"} />
       <VideoContainer>
-        <Video />
+        <Video link={PresentationVideoLink} />
         <ul>
           {[...Array(3).keys()].map((_, i) => (
-            <li key={i}>{Description}</li>
+            <li key={i}>{Description || "Нет описания"}</li>
           ))}
         </ul>
       </VideoContainer>
