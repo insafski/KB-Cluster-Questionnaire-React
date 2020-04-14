@@ -50,7 +50,7 @@ const Container = styled.header`
 
 const links = [
   { title: "О проекте", to: "#city" },
-  { title: "Тирритории", to: "#territory" },
+  { title: "Территории", to: "#territory" },
   { title: "Карта", to: "#map" },
   { title: "Опрос", to: "#participate" }
 ];
