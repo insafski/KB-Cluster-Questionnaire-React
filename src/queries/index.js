@@ -33,8 +33,23 @@ const FORM_QUERY = gql`
       Description
       Questions
       slug
+      city {
+        id
+      }
     }
   }
 `;
 
-export { CITY_QUERY, FORM_QUERY };
+const ADD_RESPONSE_MUTATION = gql`
+  mutation AddResponseMutation($data: ResponseInput) {
+    createResponse(input: { data: $data }) {
+      response {
+        name
+        surname
+        email
+      }
+    }
+  }
+`;
+
+export { CITY_QUERY, FORM_QUERY, ADD_RESPONSE_MUTATION };

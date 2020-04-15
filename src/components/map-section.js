@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 
 import Section from "./section";
+import { baseUrl } from "../utils";
 
 const Container = styled(Section)`
   flex-direction: column;
@@ -34,7 +35,6 @@ const Container = styled(Section)`
 
 const MapSection = ({ data }) => {
   const { Name, Description, LeadMap } = data ?? {};
-  const baseUrl = process.env.REACT_APP_STRAPI_ENDPOINT.replace("/graphql", "");
   const url = LeadMap?.url ? baseUrl + LeadMap.url : "";
 
   return (
