@@ -9,6 +9,7 @@ import { CITY_QUERY } from "../queries";
 import { StateContext } from "../context";
 import Survey from "./survey";
 import { cityName } from "../utils";
+import Header from "../components/header";
 
 const GlobalStyle = createGlobalStyle`
   h1,
@@ -48,7 +49,7 @@ const App = () => {
     return <p>{`Ошибка: ${error.message}`}</p>;
   }
 
-  const title = `Чего хочет ${data?.cities?.[0]?.Name}?`;
+  const title = data?.cities?.[0]?.title;
 
   return (
     <Router>
@@ -61,19 +62,18 @@ const App = () => {
       </Helmet>
       <GlobalStyle />
       <Container>
+        <Header {...{ title }} />
         {data && (
           <Switch>
             <Route
               path="/"
               exact
-              render={({ location }) => (
-                <Main {...{ data, title, loading, location }} />
-              )}
+              render={props => <Main {...{ data, title, loading, ...props }} />}
             />
             <Route
-              path="/:territory/form"
+              path="/form"
               exact
-              render={({ match }) => <Survey {...{ title, match }} />}
+              render={props => <Survey {...{ title, ...props }} />}
             />
           </Switch>
         )}

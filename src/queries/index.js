@@ -5,6 +5,7 @@ const CITY_QUERY = gql`
     cities(where: { slug_eq: $slug }) {
       id
       Name
+      title
       theme {
         name
         background

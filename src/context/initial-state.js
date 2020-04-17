@@ -1,3 +1,3 @@
-const initialState = { territory: 0 };
+const initialState = {};
 
 export default initialState;

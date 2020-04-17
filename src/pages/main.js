@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 
-import Header from "../components/header";
 import CitySection from "../components/city-section";
 import Index from "../components/territory-section";
 import Footer from "../components/footer";
@@ -16,11 +15,11 @@ const Container = styled.div`
   scroll-snap-type: y mandatory;
 `;
 
-const Main = ({ data, title, loading, location }) => {
+const Main = ({ data, loading, location }) => {
   const { state } = useContext(StateContext);
   const { territory } = state;
-  const activeTerritory = data?.territories?.filter(
-    item => item?.id === territory
+  const activeTerritory = data?.territories?.filter(item =>
+    territory ? item?.id === territory : item
   )?.[0];
   const { hash } = location ?? {};
 
@@ -38,7 +37,6 @@ const Main = ({ data, title, loading, location }) => {
   return (
     <Loader spinning={loading}>
       <Container>
-        <Header {...{ title }} />
         <CitySection data={data?.cities?.[0]} />
         <Index data={data?.territories} />
         <MapSection data={activeTerritory} />

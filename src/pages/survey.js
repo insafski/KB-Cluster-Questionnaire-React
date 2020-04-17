@@ -5,8 +5,8 @@ import ReactMarkdown from "react-markdown";
 
 import { ADD_RESPONSE_MUTATION, FORM_QUERY } from "../queries";
 import Loader from "../components/loader";
-import Header from "../components/header";
 import SurveyForm from "../components/survey-form";
+import { useQueryString } from "../utils";
 
 const Container = styled.div`
   width: 100%;
@@ -28,10 +28,11 @@ const InnerContainer = styled.div`
   }
 `;
 
-const Survey = ({ title, match }) => {
-  const { territory } = match?.params ?? {};
+const Survey = () => {
+  const query = useQueryString();
+  const slug = query.get("t");
   const { data, loading, error } = useQuery(FORM_QUERY, {
-    variables: { slug: territory }
+    variables: { slug }
   });
   const [addResponse] = useMutation(ADD_RESPONSE_MUTATION);
 
@@ -59,7 +60,6 @@ const Survey = ({ title, match }) => {
   return (
     <Loader spinning={loading}>
       <Container>
-        <Header {...{ title }} />
         <InnerContainer>
           <h2>{Name || "Нет названия"}</h2>
           <ReactMarkdown>{Description || "Нет описания"}</ReactMarkdown>

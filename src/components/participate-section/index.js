@@ -60,7 +60,7 @@ const ParticipateSection = ({ data }) => {
           ))}
         </ul>
       </VideoContainer>
-      <Link to={`${slug ? `/${slug}` : ""}/form`}>
+      <Link to={`/form${slug ? `?t=${slug}` : ""}`}>
         <SurveyButton>Перейти к опросу</SurveyButton>
       </Link>
     </Container>
