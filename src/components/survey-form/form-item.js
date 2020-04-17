@@ -55,7 +55,6 @@ const FormItem = ({ name, label, required, item }) => {
       name={name ? name : label}
       extra={!required && "Опционально"}
       rules={handledRules()}
-      help="test"
     >
       {handleType()}
     </Form.Item>

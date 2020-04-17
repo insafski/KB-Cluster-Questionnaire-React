@@ -7,6 +7,7 @@ const Btn = styled(Button)`
   padding-right: 3rem;
   height: 4rem;
   border-radius: 2rem;
+  border: 0;
   font-weight: 500;
   font-size: 1.125rem;
   line-height: 1.12;

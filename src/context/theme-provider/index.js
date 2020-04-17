@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ThemeProvider as Theme } from "styled-components";
 
-import defaultLight from "./theme/default/dark";
+import defaultLight from "./theme/default/light";
 import defaultDark from "./theme/default/dark";
 import GlobalStyle from "./global-style";
 import { StateContext } from "../index";

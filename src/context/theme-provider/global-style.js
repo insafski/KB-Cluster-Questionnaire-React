@@ -59,6 +59,10 @@ const GlobalStyle = createGlobalStyle`
       @media (max-width: ${theme.breakpoint.mobile}) {}
     }   
     
+    h1, h2, h3, h4, h5, h6, p, span {
+      color: var(--color-main-text);
+    }
+    
     h1, h2, h3, h4 {
       font-weight: var(--font-weight-heading);
     }

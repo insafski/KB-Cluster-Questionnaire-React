@@ -17,27 +17,6 @@ const Container = styled(Section)`
     margin-bottom: 3rem;
     max-width: 60%;
   }
-
-  .ant-btn-primary {
-    padding-left: 3rem;
-    padding-right: 3rem;
-    height: 4rem;
-    border-radius: 2rem;
-    font-weight: 500;
-    font-size: 1.125rem;
-    line-height: 1.12;
-
-    &,
-    & span {
-      color: #494949;
-    }
-
-    :active,
-    :hover,
-    :focus {
-      background-color: #dedede;
-    }
-  }
 `;
 
 const CitySection = ({ data }) => {
