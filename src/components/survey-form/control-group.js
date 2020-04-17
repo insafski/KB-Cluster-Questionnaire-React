@@ -1,5 +1,5 @@
 import React from "react";
-import { Checkbox, Radio } from "antd";
+import { Checkbox, Form, Radio } from "antd";
 import styled from "styled-components";
 
 import { baseUrl } from "../../utils";
@@ -15,24 +15,24 @@ const Container = styled.div`
   }
 `;
 
-const ControlGroup = ({ type, defaultValue, options }) => {
+const ControlGroup = ({ name, label, type, defaultValue, options }) => {
   const Component = type === "radio" ? Radio : Checkbox;
 
   return (
-    <Component.Group {...{ defaultValue }}>
-      {options.map((option, i) => {
-        const { value, image } = option;
+    <Form.Item name={name ? name : label} noStyle>
+      <Component.Group {...{ defaultValue }}>
+        {options.map((option, i) => {
+          const { value, image } = option;
 
-        return (
-          <Container key={i}>
-            {image && <img alt={value} src={baseUrl + image} />}
-            <Component label={value} {...{ value }}>
-              {value}
-            </Component>
-          </Container>
-        );
-      })}
-    </Component.Group>
+          return (
+            <Container key={i}>
+              <Component {...{ value }}>{value}</Component>
+              {image && <img alt={value} src={baseUrl + image} />}
+            </Container>
+          );
+        })}
+      </Component.Group>
+    </Form.Item>
   );
 };
 

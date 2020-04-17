@@ -2,6 +2,7 @@ import React, { createContext, useReducer } from "react";
 
 import reducer from "./reducer";
 import initialState from "./initial-state";
+import ThemeProvider from "./theme-provider";
 
 const StateContext = createContext(initialState);
 
@@ -10,7 +11,7 @@ const StateProvider = ({ children }) => {
 
   return (
     <StateContext.Provider value={{ state, dispatch }}>
-      {children}
+      <ThemeProvider>{children}</ThemeProvider>
     </StateContext.Provider>
   );
 };

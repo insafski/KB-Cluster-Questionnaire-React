@@ -7,6 +7,11 @@ const reducer = (state, action) => {
         ...state,
         territory: payload
       };
+    case "CHANGE_THEME":
+      return {
+        ...state,
+        customTheme: payload
+      };
     default:
       return state;
   }

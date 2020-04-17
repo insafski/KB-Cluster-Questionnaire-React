@@ -10,6 +10,7 @@ const Btn = styled(Button)`
   font-weight: 500;
   font-size: 1.125rem;
   line-height: 1.12;
+  background-color: var(--color-primary);
 
   &,
   & span {
@@ -23,6 +24,6 @@ const Btn = styled(Button)`
   }
 `;
 
-const SurveyButton = props => <Btn type="primary" {...props} />;
+const SurveyButton = props => <Btn {...props} />;
 
 export default SurveyButton;

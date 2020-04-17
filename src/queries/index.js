@@ -5,6 +5,13 @@ const CITY_QUERY = gql`
     cities(where: { slug_eq: $slug }) {
       id
       Name
+      theme {
+        name
+        background
+        color
+        primary
+        font
+      }
     }
     territories(where: { city: { slug_eq: $slug } }) {
       id

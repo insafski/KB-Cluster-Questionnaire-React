@@ -8,6 +8,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { CITY_QUERY } from "../queries";
 import { StateContext } from "../context";
 import Survey from "./survey";
+import { cityName } from "../utils";
 
 const GlobalStyle = createGlobalStyle`
   h1,
@@ -29,18 +30,18 @@ const Container = styled.div`
 `;
 
 const App = () => {
-  const slug = process.env.REACT_APP_CITY_NAME;
+  const slug = cityName;
   const { data, loading, error } = useQuery(CITY_QUERY, {
     variables: { slug }
   });
   const { dispatch } = useContext(StateContext);
 
   useEffect(() => {
-    data &&
-      dispatch({
-        type: "CHANGE_TERRITORY",
-        payload: data?.territories?.[0]?.id
-      });
+    const handleState = (type, payload) => dispatch({ type, payload });
+
+    data && handleState("CHANGE_TERRITORY", data?.territories?.[0]?.id);
+    data?.cities?.[0]?.theme &&
+      handleState("CHANGE_THEME", data?.cities?.[0]?.theme);
   }, [dispatch, data]);
 
   if (error) {
