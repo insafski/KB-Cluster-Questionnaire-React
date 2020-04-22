@@ -1,31 +1,35 @@
 import React from "react";
 import styled from "styled-components";
 import { useQuery, useMutation } from "@apollo/react-hooks";
-import ReactMarkdown from "react-markdown";
+import { Skeleton } from "antd";
 
 import { ADD_RESPONSE_MUTATION, FORM_QUERY } from "../queries";
-import Loader from "../components/loader";
-import SurveyForm from "../components/survey-form";
 import { useQueryString } from "../utils";
+import Loader from "../components/loader";
+import Form from "../components/form";
+import Heading from "../components/ui/heading";
+import Paragraph from "../components/ui/paragraph";
+import Error from "./error";
+import Footer from "../components/footer";
 
 const Container = styled.div`
   width: 100%;
 `;
-const InnerContainer = styled.div`
+const TitleContainer = styled.div`
   margin: 0 auto;
-  padding: 6rem 2rem 8rem;
-  max-width: 44rem;
+  padding: 6rem 2rem;
+  max-width: 40rem;
   width: 100%;
   height: 100%;
-
-  h2 {
-    font-size: 3rem;
-    line-height: 1.2;
-  }
-
-  p {
-    margin-bottom: 2rem;
-  }
+`;
+const FormContainer = styled.div`
+  margin: 0 5rem 10rem;
+  padding: 4.5rem;
+  background-color: var(--color-secondary);
+`;
+const InnerContainer = styled.div`
+  margin: 0 auto;
+  max-width: 40rem;
 `;
 
 const Survey = () => {
@@ -40,7 +44,8 @@ const Survey = () => {
     return <p>{`Ошибка: ${error.message}`}</p>;
   }
 
-  const { id, Name, Description, city } = data?.territories?.[0] ?? {};
+  const { id, Name, Description, Questions, city } =
+    data?.territories?.[0] ?? {};
   const onFinish = data => {
     const { name, surname, email, comment, ...answers } = data;
 
@@ -60,14 +65,27 @@ const Survey = () => {
   return (
     <Loader spinning={loading}>
       <Container>
-        <InnerContainer>
-          <h2>{Name || ""}</h2>
-          <ReactMarkdown>{Description || "Нет описания"}</ReactMarkdown>
-          <SurveyForm
-            fields={data?.territories?.[0]?.Questions || []}
-            {...{ onFinish }}
-          />
-        </InnerContainer>
+        <TitleContainer>
+          {Name && Description ? (
+            <>
+              <Heading as="h2">{Name}</Heading>
+              <Paragraph>{Description}</Paragraph>
+            </>
+          ) : (
+            <Skeleton active />
+          )}
+        </TitleContainer>
+        <FormContainer>
+          <InnerContainer>
+            {Questions ? (
+              <Form fields={Questions || []} {...{ onFinish }} />
+            ) : (
+              <Skeleton active paragraph={{ rows: 12 }} />
+            )}
+            {error && <Error message={error?.message} />}
+          </InnerContainer>
+        </FormContainer>
+        <Footer />
       </Container>
     </Loader>
   );

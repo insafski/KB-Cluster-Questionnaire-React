@@ -4,7 +4,8 @@ import { Button, Input } from "antd";
 import { RightOutlined } from "@ant-design/icons";
 
 import InnerContainer from "../inner-container";
-import List from "./list";
+// import List from "./list";
+import Logos from "../logos";
 
 const Container = styled.footer`
   padding-top: 3.5rem;
@@ -42,20 +43,16 @@ const Container = styled.footer`
     }
   }
 `;
-const ListContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-`;
+// const ListContainer = styled.div`
+//   display: grid;
+//   grid-template-columns: 1fr 1fr;
+// `;
 
 const Footer = () => (
   <Container>
     <InnerContainer>
       <nav>
-        <ListContainer>
-          {[...Array(2).keys()].map((_, i) => (
-            <List key={i} />
-          ))}
-        </ListContainer>
+        <Logos />
         <Input
           placeholder="Введите ваш email"
           suffix={

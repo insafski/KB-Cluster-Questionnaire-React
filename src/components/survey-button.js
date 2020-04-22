@@ -15,13 +15,13 @@ const Btn = styled(Button)`
 
   &,
   & span {
-    color: #494949;
+    color: var(--color-white);
   }
 
   :active,
   :hover,
   :focus {
-    background-color: #dedede;
+    background-color: var(--color-grey);
   }
 `;
 

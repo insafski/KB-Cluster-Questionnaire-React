@@ -1,11 +1,12 @@
 import React from "react";
 
-import Card from "../card";
+import Card from "./card";
 import FormItem from "./form-item";
+import Heading from "../ui/heading";
 
 const FormGroup = ({ label, group }) => (
   <Card>
-    {label && <h3>{label}</h3>}
+    {label && <Heading as="h5">{label}</Heading>}
     {group &&
       group.map((item, i) => {
         const { name, label, required } = item;

@@ -1,14 +1,15 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { Radio } from "antd";
+import { Radio, Skeleton } from "antd";
 
+import { StateContext } from "../../context";
 import Section from "../section";
 import Video from "../video";
 import SurveyButton from "../survey-button";
 import Heading from "../ui/heading";
 import Text from "../ui/text";
-import { StateContext } from "../../context";
+import Paragraph from "../ui/paragraph";
 
 const Container = styled(Section)`
   flex-direction: column;
@@ -16,48 +17,73 @@ const Container = styled(Section)`
 
   h2,
   h3,
+  li,
   p,
-  :not(label) span {
+  span {
     color: var(--color-white);
   }
 
-  p {
-    margin-bottom: 8rem;
-    max-width: 50%;
-  }
+  .ant-radio {
+    &-wrapper {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
 
-  ul {
-    margin: 0 0 2.5rem;
-    padding: 0;
-    list-style: none;
+    &-group {
+      margin-bottom: 2.5rem;
+    }
 
-    li {
-      padding-left: 4rem;
-      text-indent: -4rem;
+    &-wrapper:hover .ant-radio,
+    &:hover .ant-radio-inner,
+    &-inner,
+    &-input:focus + .ant-radio-inner,
+    &-checked,
+    &-checked::after {
+      border-color: var(--color-primary);
+    }
 
-      :before {
-        content: "";
-        display: inline-block;
-        margin-right: 1rem;
-        width: 3rem;
-        height: 0.25rem;
-        background-color: var(--color-primary);
-        text-indent: 4rem;
-        vertical-align: super;
-      }
-
-      :not(:last-child) {
-        margin-bottom: 1rem;
-      }
-
-      p {
-        display: inline;
-      }
+    &-inner::after {
+      background-color: var(--color-primary);
     }
   }
+`;
 
-  .ant-radio-group {
-    margin-bottom: 2.5rem;
+const List = styled.ul`
+  margin: 0 0 2.5rem;
+  padding: 0;
+  list-style: none;
+
+  li {
+    padding-left: 4rem;
+    text-indent: -4rem;
+
+    :before {
+      content: "";
+      display: inline-block;
+      margin-right: 1rem;
+      width: 3rem;
+      height: 0.25rem;
+      background-color: var(--color-primary);
+      text-indent: 4rem;
+      vertical-align: super;
+    }
+
+    :not(:last-child) {
+      margin-bottom: 1rem;
+    }
+
+    p {
+      display: inline;
+    }
+  }
+`;
+
+const DescriptionContainer = styled.div`
+  p,
+  .ant-skeleton {
+    margin-bottom: 8rem;
+    max-width: 50%;
   }
 `;
 
@@ -82,21 +108,27 @@ const Participate = ({ data }) => {
 
   return (
     <Container id="participate" bgColor="var(--color-secondary)">
-      <Heading as="h2">Принять участие</Heading>
-      <Text source={description || "Нет описания"} />
+      <DescriptionContainer>
+        <Heading as="h2">Принять участие</Heading>
+        {description ? (
+          <Paragraph>{description}</Paragraph>
+        ) : (
+          <Skeleton title={false} />
+        )}
+      </DescriptionContainer>
       <VideoContainer>
         <Video link={PresentationVideoLink} />
         <div>
           <Heading as="h3">
             Как вы можете поучаствовать в разработке проекта
           </Heading>
-          <ul>
+          <List>
             {items.map((item, i) => (
-              <li key={i}>
-                <Text type="option">{item}</Text>
-              </li>
+              <Text key={i} as="li" type="option">
+                {item}
+              </Text>
             ))}
-          </ul>
+          </List>
           {territories && (
             <Radio.Group
               onChange={e =>
@@ -116,7 +148,7 @@ const Participate = ({ data }) => {
                     value={slug}
                     buttonStyle="solid"
                   >
-                    {Name}
+                    <Text type="option">{Name}</Text>
                   </Radio>
                 );
               })}

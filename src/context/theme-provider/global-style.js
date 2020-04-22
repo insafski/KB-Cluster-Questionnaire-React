@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
       font,
       fontWeight,
       lineHeight,
+      shadow,
       breakpoint
     } = theme;
 
@@ -18,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
         --font-size-body-s: ${fontSize.bodyS};
         --font-size-body-m: ${fontSize.bodyM};
         --font-size-body-l: ${fontSize.bodyL};
+        --font-size-heading-xs: ${fontSize.headingXS};
         --font-size-heading-s: ${fontSize.headingS};
         --font-size-heading-m: ${fontSize.headingM};
         --font-size-heading-l: ${fontSize.headingL};
@@ -27,6 +29,8 @@ const GlobalStyle = createGlobalStyle`
         --color-white: ${color.white};
         --color-black: ${color.black};
         --color-grey: ${color.grey};
+        --color-grey-second: ${color.greySecond};
+        --color-lighter-grey: ${color.lighterGrey};
         --color-light-grey: ${color.lightGrey};
         --color-dark-grey: ${color.darkGrey};
         --color-main-body: ${color.mainBody};
@@ -60,6 +64,10 @@ const GlobalStyle = createGlobalStyle`
         --line-height-body-m: ${lineHeight.bodyM};
         --line-height-body-l: ${lineHeight.bodyL};
         --line-height-heading: ${lineHeight.heading};
+        
+        /* Shadow */
+        --shadow-small: ${shadow.small};
+        --shadow-large: ${shadow.large};
       }
   
       html body {

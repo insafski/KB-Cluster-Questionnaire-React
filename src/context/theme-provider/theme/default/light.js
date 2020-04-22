@@ -6,7 +6,8 @@ export default {
     bodyS: "0.875rem",
     bodyM: "1rem",
     bodyL: "1.25rem",
-    headingS: "1.75rem",
+    headingXS: "1.75rem",
+    headingS: "2rem",
     headingM: "2.25rem",
     headingL: "3rem",
     headingXL: "5.75rem"
@@ -45,11 +46,9 @@ export default {
     heading: 1
   },
   shadow: {
-    small: `0 0 0.125rem rgba(0, 0, 0, .12)`,
-    large: `0 0 0.25rem} rgba(0, 0, 0, .12)`
+    small: "0 0 0.125rem rgba(0, 0, 0, .12)",
+    large: "0 0 0.25rem rgba(0, 0, 0, .12)"
   },
-  variant: {},
-  text: {},
   button: {
     primary: {
       color: global.color.white,

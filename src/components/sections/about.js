@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { Skeleton } from "antd";
 
 import { baseUrl } from "../../utils";
 import Section from "../section";
 import SurveyButton from "../survey-button";
 import Heading from "../ui/heading";
-import Text from "../ui/text";
+import Paragraph from "../ui/paragraph";
+import Logos from "../logos";
 
 const Container = styled(Section)`
   flex-direction: column;
@@ -16,13 +18,14 @@ const Container = styled(Section)`
   background-position: center;
   background-repeat: no-repeat;
 
-  h1 {
-    margin-bottom: 3rem;
-  }
-
-  p {
+  p,
+  .ant-skeleton-content {
     margin-bottom: 3rem;
     max-width: 60%;
+  }
+
+  .ant-skeleton-title {
+    max-width: 40%;
   }
 `;
 const InnerContainer = styled.div`
@@ -35,8 +38,17 @@ const About = ({ data }) => {
   return (
     <Container id="about" img={background?.url}>
       <InnerContainer>
-        <Heading as="h1">{Name || ""}</Heading>
-        <Text type="primary">{description || "Нет описания"}</Text>
+        <Logos />
+        {Name ? (
+          <Heading as="h1">{Name}</Heading>
+        ) : (
+          <Skeleton paragraph={false} />
+        )}
+        {description ? (
+          <Paragraph type="primary">{description}</Paragraph>
+        ) : (
+          <Skeleton title={false} />
+        )}
         <Link to="#participate">
           <SurveyButton>Перейти к опросу</SurveyButton>
         </Link>
