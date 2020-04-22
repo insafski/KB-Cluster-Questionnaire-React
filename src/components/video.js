@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { Button } from "antd";
-import { RightCircleOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
-import video from "../../images/video.jpg";
+import video from "../images/video.jpg";
+import { ReactComponent as Play } from "../images/play.svg";
 
 const Container = styled.div`
   display: flex;
@@ -20,13 +20,22 @@ const Container = styled.div`
     padding-top: 56.25%;
     height: 0;
   }
+
+  button {
+    color: var(--color-secondary);
+
+    :hover,
+    :focus {
+      color: var(--color-primary);
+    }
+  }
 `;
 
 const Video = ({ link }) => (
   <Container bgImage={video}>
     <Link to={link || ""}>
       <Button type="link">
-        Посмотреть презентацию <RightCircleOutlined />
+        <Play />
       </Button>
     </Link>
   </Container>

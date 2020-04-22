@@ -14,6 +14,7 @@ export default {
   color: {
     ...global.color,
     primary: global.color.darkGrey,
+    secondary: global.color.darkGrey,
     mainBg: global.color.white,
     mainText: global.color.black
   },
@@ -31,8 +32,10 @@ export default {
     monospace: global.font.monospace
   },
   fontWeight: {
-    body: 400,
+    regular: 400,
+    body: 500,
     heading: 700,
+    semiBold: 600,
     bold: 700
   },
   lineHeight: {

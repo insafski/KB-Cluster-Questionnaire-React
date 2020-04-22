@@ -10,6 +10,7 @@ import { StateContext } from "../context";
 import Survey from "./survey";
 import { cityName } from "../utils";
 import Header from "../components/header";
+import Error from "./error";
 
 const GlobalStyle = createGlobalStyle`
   h1,
@@ -40,14 +41,14 @@ const App = () => {
   useEffect(() => {
     const handleState = (type, payload) => dispatch({ type, payload });
 
-    data && handleState("CHANGE_TERRITORY", data?.territories?.[0]?.id);
+    data &&
+      handleState(
+        "CHANGE_TERRITORY",
+        data?.cities?.[0]?.territories?.[0]?.slug
+      );
     data?.cities?.[0]?.theme &&
       handleState("CHANGE_THEME", data?.cities?.[0]?.theme);
   }, [dispatch, data]);
-
-  if (error) {
-    return <p>{`Ошибка: ${error.message}`}</p>;
-  }
 
   const title = data?.cities?.[0]?.title;
 
@@ -63,20 +64,19 @@ const App = () => {
       <GlobalStyle />
       <Container>
         <Header {...{ title }} />
-        {data && (
-          <Switch>
-            <Route
-              path="/"
-              exact
-              render={props => <Main {...{ data, title, loading, ...props }} />}
-            />
-            <Route
-              path="/form"
-              exact
-              render={props => <Survey {...{ title, ...props }} />}
-            />
-          </Switch>
-        )}
+        {error && <Error message={error?.message} />}
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={props => <Main {...{ data, title, loading, ...props }} />}
+          />
+          <Route
+            path="/form"
+            exact
+            render={props => <Survey {...{ title, ...props }} />}
+          />
+        </Switch>
       </Container>
     </Router>
   );

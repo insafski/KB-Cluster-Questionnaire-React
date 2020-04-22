@@ -1,8 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import InnerContainer from "./inner-container";
+import Link from "./ui/link";
 
 const Container = styled.header`
   position: fixed;
@@ -50,17 +50,16 @@ const Container = styled.header`
 `;
 
 const links = [
-  { title: "О проекте", to: "/#city" },
-  { title: "Территории", to: "/#territory" },
-  { title: "Карта", to: "/#map" },
-  { title: "Опрос", to: "/#participate" }
+  { title: "О платформе", to: "/#about" },
+  { title: "Территории благоустройства", to: "/#territories" },
+  { title: "Принять участие", to: "/#participate" }
 ];
 
 const Header = ({ title }) => (
   <Container>
     <InnerContainer as="nav">
-      <Link to="/">
-        <h1>{title}</h1>
+      <Link to="/" type="secondary">
+        {title}
       </Link>
       <ul>
         {links.map((link, i) => {
@@ -68,7 +67,18 @@ const Header = ({ title }) => (
 
           return (
             <li key={i}>
-              <Link {...{ to }}>{title}</Link>
+              <Link
+                {...{ to }}
+                type="primary"
+                isActive={(match, location) =>
+                  match && location?.pathname + location?.hash === to
+                }
+                activeStyle={{
+                  color: "var(--color-primary)"
+                }}
+              >
+                {title}
+              </Link>
             </li>
           );
         })}

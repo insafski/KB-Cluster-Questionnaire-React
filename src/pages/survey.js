@@ -61,7 +61,7 @@ const Survey = () => {
     <Loader spinning={loading}>
       <Container>
         <InnerContainer>
-          <h2>{Name || "Нет названия"}</h2>
+          <h2>{Name || ""}</h2>
           <ReactMarkdown>{Description || "Нет описания"}</ReactMarkdown>
           <SurveyForm
             fields={data?.territories?.[0]?.Questions || []}

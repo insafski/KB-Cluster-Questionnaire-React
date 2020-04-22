@@ -6,6 +6,26 @@ const CITY_QUERY = gql`
       id
       Name
       title
+      description
+      background {
+        url
+      }
+      territories {
+        id
+        Name
+        Description
+        PresentationVideoLink
+        LeadMap {
+          url
+        }
+        LeadMapMeta
+        Questions
+        FooterText
+        Logotypes {
+          url
+        }
+        slug
+      }
       theme {
         name
         background
@@ -13,22 +33,6 @@ const CITY_QUERY = gql`
         primary
         font
       }
-    }
-    territories(where: { city: { slug_eq: $slug } }) {
-      id
-      Name
-      Description
-      PresentationVideoLink
-      LeadMap {
-        url
-      }
-      LeadMapMeta
-      Questions
-      FooterText
-      Logotypes {
-        url
-      }
-      slug
     }
   }
 `;

@@ -4,7 +4,13 @@ export default {
     black: "#000",
     grey: "#c4c4c4",
     lightGrey: "#ededed",
-    darkGrey: "#808080"
+    darkGrey: "#434343",
+    darkerGrey: "#808080",
+    brand: {
+      domRFLight: "#8BC541",
+      domRFDark: "#2E444E",
+      domRFDarker: "#072833"
+    }
   },
   font: {
     inter: "Inter, sans-serif",

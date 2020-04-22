@@ -1,12 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
-import CitySection from "../components/city-section";
-import Index from "../components/territory-section";
+import About from "../components/sections/about";
+import Territories from "../components/sections/territories";
+import Participate from "../components/sections/participate";
 import Footer from "../components/footer";
-import MapSection from "../components/map-section";
-import { StateContext } from "../context";
-import ParticipateSection from "../components/participate-section";
 import Loader from "../components/loader";
 
 const Container = styled.div`
@@ -16,11 +14,6 @@ const Container = styled.div`
 `;
 
 const Main = ({ data, loading, location }) => {
-  const { state } = useContext(StateContext);
-  const { territory } = state;
-  const activeTerritory = data?.territories?.filter(item =>
-    territory ? item?.id === territory : item
-  )?.[0];
   const { hash } = location ?? {};
 
   useEffect(() => {
@@ -37,10 +30,9 @@ const Main = ({ data, loading, location }) => {
   return (
     <Loader spinning={loading}>
       <Container>
-        <CitySection data={data?.cities?.[0]} />
-        <Index data={data?.territories} />
-        <MapSection data={activeTerritory} />
-        <ParticipateSection data={activeTerritory} />
+        <About data={data?.cities?.[0]} />
+        <Territories data={data?.cities?.[0]?.territories} />
+        <Participate data={data?.cities?.[0]} />
         <Footer />
       </Container>
     </Loader>

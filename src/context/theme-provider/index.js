@@ -3,6 +3,7 @@ import { ThemeProvider as Theme } from "styled-components";
 
 import defaultLight from "./theme/default/light";
 import defaultDark from "./theme/default/dark";
+import domRF from "./theme/dom-rf";
 import GlobalStyle from "./global-style";
 import { StateContext } from "../index";
 import { theme } from "../../utils";
@@ -16,6 +17,8 @@ const ThemeProvider = ({ children }) => {
     switch (theme) {
       case "dark":
         return defaultDark;
+      case "domRF":
+        return domRF;
       case "custom":
         return {
           ...defaultLight,

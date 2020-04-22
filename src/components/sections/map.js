@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 
-import Section from "./section";
-import { baseUrl } from "../utils";
+import Section from "../section";
+import { baseUrl } from "../../utils";
 
 const Container = styled(Section)`
   flex-direction: column;
@@ -33,16 +33,16 @@ const Container = styled(Section)`
   }
 `;
 
-const MapSection = ({ data }) => {
+const Map = ({ data }) => {
   const { Name, Description, LeadMap } = data ?? {};
   const url = LeadMap?.url ? baseUrl + LeadMap.url : "";
 
   return (
     <Container id="map" bgImage={url}>
-      <h2>{Name || "Нет названи"}</h2>
+      <h2>{Name || ""}</h2>
       <ReactMarkdown>{Description || "Нет описания"}</ReactMarkdown>
     </Container>
   );
 };
 
-export default MapSection;
+export default Map;
