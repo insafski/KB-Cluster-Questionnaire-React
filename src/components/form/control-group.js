@@ -7,7 +7,7 @@ import { baseUrl } from "../../utils";
 const Container = styled.div`
   .ant-checkbox {
     margin: 0 1rem;
-    width: 1rem;
+    width: 1.125rem;
 
     &-wrapper {
       &,

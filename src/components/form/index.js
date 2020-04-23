@@ -11,7 +11,13 @@ import Text from "../ui/text";
 
 const Container = styled.div`
   ${Text} + .ant-checkbox-wrapper {
+    display: flex;
     margin: 2rem 0;
+
+    .ant-checkbox {
+      margin-top: 0.25rem;
+      margin-right: 0.5rem;
+    }
   }
 `;
 

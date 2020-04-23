@@ -8,7 +8,8 @@ const { TextArea } = Input;
 const Container = styled(Form.Item)`
   .ant {
     &-form-item-extra {
-      color: var(--color-dark-grey);
+      margin-top: 0.25rem;
+      color: var(--color-grey-second);
     }
 
     &-input {
@@ -117,7 +118,7 @@ const FormItem = ({ name, label, required, item }) => {
       {...{ label, required }}
       hasFeedback={(type === "text" || type === "email") && true}
       name={name ? name : label}
-      extra={!required && "Опционально"}
+      extra={!required && "Необязательное поле"}
       rules={handledRules()}
     >
       {handleType()}
