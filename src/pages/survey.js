@@ -11,6 +11,7 @@ import Heading from "../components/ui/heading";
 import Paragraph from "../components/ui/paragraph";
 import Error from "./error";
 import Footer from "../components/footer";
+import Message from "../components/form/message";
 
 const Container = styled.div`
   width: 100%;
@@ -35,16 +36,16 @@ const InnerContainer = styled.div`
 const Survey = ({ history }) => {
   const query = useQueryString();
   const slug = query.get("t");
+  const formSuccess = query.get("success");
+  const formError = query.get("error");
+
   const { data, loading, error } = useQuery(FORM_QUERY, {
     variables: { slug }
   });
   const [addResponse] = useMutation(ADD_RESPONSE_MUTATION, {
-    onCompleted: () => history.push("/")
+    onCompleted: () => history.push(`/form?t=${slug}&success=true`),
+    onError: () => history.push("&error=true")
   });
-
-  if (error) {
-    return <p>{`Ошибка: ${error.message}`}</p>;
-  }
 
   const { id, Name, Description, Questions, city } =
     data?.territories?.[0] ?? {};
@@ -64,6 +65,27 @@ const Survey = ({ history }) => {
     return addResponse({ variables: { data: response } });
   };
 
+  const nextSlug = data?.territories?.[0]?.city?.territories?.[0]?.slug;
+
+  const handleForm = () => {
+    switch (true) {
+      case Questions && !formSuccess && !formError:
+        return <Form fields={Questions} {...{ onFinish }} />;
+      case formSuccess === "true":
+        return (
+          <Message
+            status="success"
+            title="Спасибо, что прошли опрос"
+            link={`/form?t=${nextSlug}`}
+          />
+        );
+      case formError === "true":
+        return <Message status="error" title="Ошибка" />;
+      default:
+        return <Skeleton active paragraph={{ rows: 12 }} />;
+    }
+  };
+
   return (
     <Loader spinning={loading}>
       <Container>
@@ -79,11 +101,7 @@ const Survey = ({ history }) => {
         </TitleContainer>
         <FormContainer>
           <InnerContainer>
-            {Questions ? (
-              <Form fields={Questions || []} {...{ onFinish }} />
-            ) : (
-              <Skeleton active paragraph={{ rows: 12 }} />
-            )}
+            {handleForm()}
             {error && <Error message={error?.message} />}
           </InnerContainer>
         </FormContainer>

@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Button } from "antd";
 import { Link } from "react-router-dom";
 
+import Button from "./ui/button";
 import video from "../images/video.jpg";
 import { ReactComponent as Play } from "../images/play.svg";
 
@@ -19,15 +19,6 @@ const Container = styled.div`
     content: "";
     padding-top: 56.25%;
     height: 0;
-  }
-
-  button {
-    color: var(--color-secondary);
-
-    :hover,
-    :focus {
-      color: var(--color-primary);
-    }
   }
 `;
 

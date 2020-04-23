@@ -6,7 +6,7 @@ import { Radio, Skeleton } from "antd";
 import { StateContext } from "../../context";
 import Section from "../section";
 import Video from "../video";
-import SurveyButton from "../survey-button";
+import Button from "../ui/button";
 import Heading from "../ui/heading";
 import Text from "../ui/text";
 import Paragraph from "../ui/paragraph";
@@ -155,7 +155,7 @@ const Participate = ({ data }) => {
             </Radio.Group>
           )}
           <Link to={`/form${territory ? `?t=${territory}` : ""}`}>
-            <SurveyButton>Перейти к опросу</SurveyButton>
+            <Button type="primary">Перейти к опросу</Button>
           </Link>
         </div>
       </VideoContainer>

@@ -12,15 +12,11 @@ const Container = styled(Form.Item)`
     }
 
     &-input {
-      color: #000;
-
-      :hover,
-      :focus {
-        border-right-width: 0.125rem !important;
-      }
+      border: 0.0625rem solid var(--color-grey-second);
+      color: var(--color-main-body);
 
       :focus {
-        border-color: var(--color-dark-grey);
+        border-color: var(--color-grey-second);
         box-shadow: none;
       }
     }
@@ -52,14 +48,14 @@ const Container = styled(Form.Item)`
     }
 
     &-form-item-label {
-      padding-bottom: 1rem;
+      padding-bottom: 0.5rem;
     }
 
     &-form-item-label > label,
     &-checkbox-wrapper {
-      font-size: var(--font-size-body-l);
+      font-size: var(--font-size-body-m);
       line-height: var(--line-height-body-m);
-      color: var(--color-secondary);
+      color: var(--color-main-body);
     }
 
     &-form-item-label > label {
@@ -68,11 +64,6 @@ const Container = styled(Form.Item)`
 
     &-checkbox + span {
       padding-left: 1rem;
-    }
-
-    &-input {
-      height: 3.5rem;
-      border: 0.125rem solid var(--color-grey-second);
     }
   }
 `;
@@ -111,6 +102,7 @@ const FormItem = ({ name, label, required, item }) => {
         return [
           {
             type: "array",
+            transform: value => value || undefined,
             message: "Выберите один из вариантов",
             required
           }

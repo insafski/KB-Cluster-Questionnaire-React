@@ -39,7 +39,7 @@ const CITY_QUERY = gql`
 
 const FORM_QUERY = gql`
   query FormQuery($slug: String) {
-    territories(where: { slug_eq: $slug }) {
+    territories(where: { slug: $slug }) {
       id
       Name
       Description
@@ -47,6 +47,9 @@ const FORM_QUERY = gql`
       slug
       city {
         id
+        territories(where: { slug_ne: $slug }) {
+          slug
+        }
       }
     }
   }

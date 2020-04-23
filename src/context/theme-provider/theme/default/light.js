@@ -1,5 +1,9 @@
 import global from "../global-variables";
 
+const { color, font } = global;
+const { greySecond, darkGrey, lighterGrey, white, black } = color;
+const { inter, monospace } = font;
+
 export default {
   breakpoint: { mobile: "360px", tablet: "960px", desktop: "1440px" },
   fontSize: {
@@ -13,11 +17,13 @@ export default {
     headingXL: "5.75rem"
   },
   color: {
-    ...global.color,
-    primary: global.color.darkGrey,
-    secondary: global.color.darkGrey,
-    mainBg: global.color.white,
-    mainText: global.color.black
+    ...color,
+    primary: greySecond,
+    secondary: darkGrey,
+    cardBg: lighterGrey,
+    mainBg: white,
+    mainText: black,
+    mainHeading: black
   },
   space: {
     zero: 0,
@@ -28,9 +34,9 @@ export default {
     xLarge: "4rem"
   },
   font: {
-    body: global.font.inter,
-    heading: global.font.inter,
-    monospace: global.font.monospace
+    body: inter,
+    heading: inter,
+    monospace: monospace
   },
   fontWeight: {
     regular: 400,
@@ -51,8 +57,8 @@ export default {
   },
   button: {
     primary: {
-      color: global.color.white,
-      bg: global.color.primary
+      color: white,
+      bg: greySecond
     },
     icon: {
       size: "1rem"

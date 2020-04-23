@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Button, Input } from "antd";
-import { RightOutlined } from "@ant-design/icons";
+import { Skeleton } from "antd";
 
 import InnerContainer from "../inner-container";
-// import List from "./list";
 import Logos from "../logos";
 
 const Container = styled.footer`
@@ -43,24 +41,13 @@ const Container = styled.footer`
     }
   }
 `;
-// const ListContainer = styled.div`
-//   display: grid;
-//   grid-template-columns: 1fr 1fr;
-// `;
 
 const Footer = () => (
   <Container>
     <InnerContainer>
       <nav>
         <Logos />
-        <Input
-          placeholder="Введите ваш email"
-          suffix={
-            <Button type="link">
-              <RightOutlined />
-            </Button>
-          }
-        />
+        <Skeleton />
       </nav>
     </InnerContainer>
   </Container>

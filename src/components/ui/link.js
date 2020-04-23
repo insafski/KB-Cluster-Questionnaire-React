@@ -24,6 +24,8 @@ const Link = styled(NavLink)`
     )};
   font-size: ${({ type }) =>
     handleType(type, "var(--font-size-body-s)", "var(--font-size-body-m)")};
+  text-decoration: ${({ type }) =>
+    handleType(type, "none", "none", "underline")};
 
   :hover {
     color: var(--color-primary);

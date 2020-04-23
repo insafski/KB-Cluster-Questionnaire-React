@@ -7,7 +7,7 @@ import Link from "./ui/link";
 const Container = styled.header`
   position: fixed;
   top: 0;
-  z-index: 1;
+  z-index: 100;
   padding-top: 1.125rem;
   padding-bottom: 1.125rem;
   width: 100%;

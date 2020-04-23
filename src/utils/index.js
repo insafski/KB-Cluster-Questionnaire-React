@@ -8,7 +8,7 @@ const theme = process.env.REACT_APP_THEME;
 const useQueryString = () => new URLSearchParams(useLocation().search);
 
 const handleColor = type =>
-  type === "secondary" ? "var(--color-black)" : "var(--color-secondary)";
+  type === "secondary" ? "var(--color-main-heading)" : "var(--color-main-body)";
 const handleWeight = type => {
   switch (type) {
     case "primary":

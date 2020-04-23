@@ -33,9 +33,11 @@ const GlobalStyle = createGlobalStyle`
         --color-lighter-grey: ${color.lighterGrey};
         --color-light-grey: ${color.lightGrey};
         --color-dark-grey: ${color.darkGrey};
+        --color-darker-grey: ${color.darkerGrey};
         --color-main-body: ${color.mainBody};
         --color-main-heading: ${color.mainHeading};
         --color-main-bg: ${color.mainBg};
+        --color-card-bg: ${color.cardBg};
         --color-primary: ${color.primary};
         --color-secondary: ${color.secondary};
   

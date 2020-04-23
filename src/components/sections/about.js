@@ -5,7 +5,7 @@ import { Skeleton } from "antd";
 
 import { baseUrl } from "../../utils";
 import Section from "../section";
-import SurveyButton from "../survey-button";
+import Button from "../ui/button";
 import Heading from "../ui/heading";
 import Paragraph from "../ui/paragraph";
 import Logos from "../logos";
@@ -13,7 +13,7 @@ import Logos from "../logos";
 const Container = styled(Section)`
   flex-direction: column;
   justify-content: center;
-  background-image: url(${({ img }) => img && baseUrl + img});
+  background-image: ${({ img }) => img && `url(${baseUrl + img})`};
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -50,7 +50,7 @@ const About = ({ data }) => {
           <Skeleton title={false} />
         )}
         <Link to="#participate">
-          <SurveyButton>Перейти к опросу</SurveyButton>
+          <Button type="primary">Перейти к опросу</Button>
         </Link>
       </InnerContainer>
     </Container>

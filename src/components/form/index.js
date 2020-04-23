@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Checkbox, Form as AntdForm } from "antd";
+import { Checkbox, Form as AntForm } from "antd";
 import styled from "styled-components";
 import Link from "../ui/link";
 
 import Card from "./card";
 import FormGroup from "./form-group";
-import SurveyButton from "../survey-button";
+import Button from "../ui/button";
 import Heading from "../ui/heading";
 import Text from "../ui/text";
 
@@ -19,15 +19,18 @@ const validateMessages = {
   required: "Обязательное поле"
 };
 
-const Form = ({ fields, onFinish }) => {
-  const [checked, setChecked] = useState(false);
+const SurveyForm = ({ fields, onFinish }) => {
+  const [disabled, setDisabled] = useState(true);
 
   return (
     <Container>
-      <AntdForm
+      <AntForm
         {...{ onFinish, validateMessages }}
+        initialValues={{}}
+        name="survey"
         layout="vertical"
         hideRequiredMark
+        scrollToFirstError
       >
         {fields.map((field, i) => (
           <FormGroup key={i} {...field} />
@@ -39,22 +42,19 @@ const Form = ({ fields, onFinish }) => {
             насколько важен был этот опрос и как его результаты могут быть
             полезены для разработки проекта. И еще какая нибудь информация.
           </Text>
-          <Checkbox
-            {...{ checked }}
-            onChange={e => setChecked(e.target.checked)}
-          >
+          <Checkbox onChange={e => setDisabled(!e.target.checked)}>
             Настоящим подтверждаю, что я ознакомлен и согласен с условиями
-            политики конфиденциальности. {<Link to="">Узнать больше</Link>}
+            политики конфиденциальности. <Link to="/policy">Узнать больше</Link>
           </Checkbox>
-          <AntdForm.Item>
-            <SurveyButton type="primary" htmlType="submit" disabled={!checked}>
+          <AntForm.Item>
+            <Button type="primary" htmlType="submit" {...{ disabled }}>
               Отправить
-            </SurveyButton>
-          </AntdForm.Item>
+            </Button>
+          </AntForm.Item>
         </Card>
-      </AntdForm>
+      </AntForm>
     </Container>
   );
 };
 
-export default Form;
+export default SurveyForm;
