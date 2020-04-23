@@ -32,13 +32,15 @@ const InnerContainer = styled.div`
   max-width: 40rem;
 `;
 
-const Survey = () => {
+const Survey = ({ history }) => {
   const query = useQueryString();
   const slug = query.get("t");
   const { data, loading, error } = useQuery(FORM_QUERY, {
     variables: { slug }
   });
-  const [addResponse] = useMutation(ADD_RESPONSE_MUTATION);
+  const [addResponse] = useMutation(ADD_RESPONSE_MUTATION, {
+    onCompleted: () => history.push("/")
+  });
 
   if (error) {
     return <p>{`Ошибка: ${error.message}`}</p>;

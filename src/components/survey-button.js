@@ -18,6 +18,14 @@ const Btn = styled(Button)`
     color: var(--color-white);
   }
 
+  &[disabled] {
+    &,
+    :hover,
+    :focus {
+      background-color: var(--color-light-grey);
+    }
+  }
+
   :active,
   :hover,
   :focus {
