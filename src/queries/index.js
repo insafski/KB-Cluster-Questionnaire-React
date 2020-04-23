@@ -2,7 +2,7 @@ import { gql } from "apollo-boost";
 
 const CITY_QUERY = gql`
   query CityQuery($slug: String) {
-    cities(where: { slug_eq: $slug }) {
+    cities(where: { slug: $slug }) {
       id
       Name
       title
