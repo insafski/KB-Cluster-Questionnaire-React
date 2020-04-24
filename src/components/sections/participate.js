@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { Radio, Skeleton } from "antd";
+import { Radio } from "antd";
 
 import { StateContext } from "../../context";
 import Section from "../section";
@@ -9,7 +9,6 @@ import Video from "../video";
 import Button from "../ui/button";
 import Heading from "../ui/heading";
 import Text from "../ui/text";
-import Paragraph from "../ui/paragraph";
 
 const Container = styled(Section)`
   flex-direction: column;
@@ -79,14 +78,6 @@ const List = styled.ul`
   }
 `;
 
-const DescriptionContainer = styled.div`
-  p,
-  .ant-skeleton {
-    margin-bottom: 8rem;
-    max-width: 50%;
-  }
-`;
-
 const VideoContainer = styled.div`
   display: grid;
   align-items: flex-start;
@@ -104,24 +95,13 @@ const items = [
 const Participate = ({ data }) => {
   const { state, dispatch } = useContext(StateContext);
   const { territory } = state;
-  const { description, territories, PresentationVideoLink } = data ?? {};
+  const { territories, PresentationVideoLink } = data ?? {};
 
   return (
     <Container id="participate" bgColor="var(--color-secondary)">
-      <DescriptionContainer>
-        <Heading as="h2">Принять участие</Heading>
-        {description ? (
-          <Paragraph>{description}</Paragraph>
-        ) : (
-          <Skeleton title={false} />
-        )}
-      </DescriptionContainer>
+      <Heading as="h2">Принять участие</Heading>
       <VideoContainer>
-        <Video link={PresentationVideoLink} />
         <div>
-          <Heading as="h3">
-            Как вы можете поучаствовать в разработке проекта
-          </Heading>
           <List>
             {items.map((item, i) => (
               <Text key={i} as="li" type="option">
@@ -158,6 +138,7 @@ const Participate = ({ data }) => {
             <Button type="primary">Перейти к опросу</Button>
           </Link>
         </div>
+        <Video link={PresentationVideoLink} />
       </VideoContainer>
     </Container>
   );

@@ -4,9 +4,11 @@ import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 
 const Spinner = styled(Spin)`
+  color: var(--color-primary);
+
   .ant-spin {
     &-dot {
-      font-size: 2rem;
+      font-size: var(--font-size-heading-l);
     }
 
     &-container {

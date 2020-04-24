@@ -33,7 +33,7 @@ const Main = ({ data, loading, location }) => {
         <About data={data?.cities?.[0]} />
         <Territories data={data?.cities?.[0]?.territories} />
         <Participate data={data?.cities?.[0]} />
-        <Footer />
+        <Footer data={data?.cities?.[0]?.site} />
       </Container>
     </Loader>
   );

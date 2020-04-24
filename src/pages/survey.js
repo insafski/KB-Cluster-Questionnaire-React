@@ -82,7 +82,7 @@ const Survey = ({ history }) => {
       case formError === "true":
         return <Message status="error" title="Ошибка" />;
       default:
-        return <Skeleton active paragraph={{ rows: 12 }} />;
+        return <Skeleton paragraph={{ rows: 12 }} />;
     }
   };
 

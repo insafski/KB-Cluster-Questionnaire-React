@@ -17,6 +17,7 @@ const Heading = styled.h1`
   h5&,
   h6& {
     font-weight: var(--font-weight-heading);
+    line-height: var(--line-height-heading);
   }
 
   h1& {
@@ -26,7 +27,7 @@ const Heading = styled.h1`
 
   h2& {
     font-size: var(--font-size-heading-l);
-    margin-bottom: var(--space-large);
+    margin-bottom: var(--space-x-large);
   }
 
   h3& {

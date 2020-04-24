@@ -33,6 +33,12 @@ const CITY_QUERY = gql`
         primary
         font
       }
+      site {
+        footer
+        logotypes {
+          url
+        }
+      }
     }
   }
 `;

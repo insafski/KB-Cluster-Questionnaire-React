@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Skeleton } from "antd";
 
 import InnerContainer from "../inner-container";
+import Text from "../ui/text";
 import Logos from "../logos";
 
 const Container = styled.footer`
@@ -42,15 +43,27 @@ const Container = styled.footer`
   }
 `;
 
-const Footer = () => (
-  <Container>
-    <InnerContainer>
-      <nav>
-        <Logos />
-        <Skeleton />
-      </nav>
-    </InnerContainer>
-  </Container>
-);
+const Footer = ({ data }) => {
+  const { footer, logotypes } = data ?? {};
+
+  return (
+    <Container>
+      <InnerContainer>
+        <nav>
+          {logotypes ? (
+            <div>
+              {logotypes.map(logotype => (
+                <img src={logotype?.url} alt="" />
+              ))}
+            </div>
+          ) : (
+            <Logos />
+          )}
+          {footer ? <Text>{footer}</Text> : <Skeleton />}
+        </nav>
+      </InnerContainer>
+    </Container>
+  );
+};
 
 export default Footer;

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import styled, { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 import { Helmet } from "react-helmet";
 
 import Main from "./main";
@@ -12,20 +12,6 @@ import Header from "../components/header";
 import Error from "./error";
 import { cityName } from "../config";
 
-const GlobalStyle = createGlobalStyle`
-  h1,
-  h2 {
-    font-weight: bold;
-  }
-  
-  h1 {
-    font-size: 4.5rem;
-  }
-  
-  h2 {
-    font-size: 3rem;
-  }
-`;
 const Container = styled.div`
   height: 100vh;
   width: 100%;
@@ -54,14 +40,24 @@ const App = () => {
 
   return (
     <Router>
-      <Helmet
-        defaultTitle={!loading ? title : ""}
-        titleTemplate={`${!loading ? title : ""} - %s`}
-      >
-        <meta name="description" content={!loading ? title : ""} />
-        <title>{!loading ? title : ""}</title>
-      </Helmet>
-      <GlobalStyle />
+      {data && (
+        <Helmet>
+          <meta name="description" content={title} />
+          <meta property="og:title" content={title} />
+          <meta property="og:type" content="website" />
+          {/*<meta*/}
+          {/*  property="og:url"*/}
+          {/*  content="http://www.imdb.com/title/tt0117500/"*/}
+          {/*/>*/}
+          {data?.cities?.[0]?.background?.url && (
+            <meta
+              property="og:image"
+              content={data?.cities?.[0]?.background?.url}
+            />
+          )}
+          <title>{title}</title>
+        </Helmet>
+      )}
       <Container>
         <Header {...{ title }} />
         {error && <Error message={error?.message} />}

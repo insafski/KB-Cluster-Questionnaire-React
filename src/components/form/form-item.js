@@ -30,6 +30,7 @@ const Container = styled(Form.Item)`
       &-group {
         display: flex;
         flex-direction: column;
+        padding-top: 1.5rem;
       }
 
       &-wrapper {

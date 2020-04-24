@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import InnerContainer from "./inner-container";
 import Link from "./ui/link";
+import { Skeleton } from "antd";
 
 const Container = styled.header`
   position: fixed;
@@ -21,12 +22,8 @@ const Container = styled.header`
     align-items: center;
   }
 
-  h1 {
-    font-weight: 900;
-    font-size: 1.25rem;
-    line-height: 1;
-    color: #000;
-    margin-bottom: 0;
+  .ant-skeleton {
+    max-width: 10rem;
   }
 
   ul {
@@ -58,9 +55,13 @@ const links = [
 const Header = ({ title }) => (
   <Container>
     <InnerContainer as="nav">
-      <Link to="/" type="secondary">
-        {title}
-      </Link>
+      {title ? (
+        <Link to="/" type="secondary">
+          {title}
+        </Link>
+      ) : (
+        <Skeleton paragraph={false} />
+      )}
       <ul>
         {links.map((link, i) => {
           const { title, to } = link;
