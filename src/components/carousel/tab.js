@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 
-import { baseUrl } from "../../utils";
 import Heading from "../ui/heading";
 import Numbers from "./numbers";
+import { apiUrl } from "../../config";
 
 const Container = styled.div`
   display: grid;
@@ -28,7 +28,7 @@ const Info = styled(ReactMarkdown)`
 `;
 
 const Map = styled.div`
-  background-image: ${({ img }) => img && `url(${baseUrl + img})`};
+  background-image: ${({ img }) => img && `url(${apiUrl + img})`};
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

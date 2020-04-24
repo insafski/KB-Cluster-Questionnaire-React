@@ -8,9 +8,9 @@ import { useQuery } from "@apollo/react-hooks";
 import { CITY_QUERY } from "../queries";
 import { StateContext } from "../context";
 import Survey from "./survey";
-import { cityName } from "../utils";
 import Header from "../components/header";
 import Error from "./error";
+import { cityName } from "../config";
 
 const GlobalStyle = createGlobalStyle`
   h1,

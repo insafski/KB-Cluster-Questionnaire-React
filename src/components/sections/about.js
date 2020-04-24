@@ -3,17 +3,17 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Skeleton } from "antd";
 
-import { baseUrl } from "../../utils";
 import Section from "../section";
 import Button from "../ui/button";
 import Heading from "../ui/heading";
 import Paragraph from "../ui/paragraph";
 import Logos from "../logos";
+import { apiUrl } from "../../config";
 
 const Container = styled(Section)`
   flex-direction: column;
   justify-content: center;
-  background-image: ${({ img }) => img && `url(${baseUrl + img})`};
+  background-image: ${({ img }) => img && `url(${apiUrl + img})`};
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

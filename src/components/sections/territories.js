@@ -8,6 +8,7 @@ import Heading from "../ui/heading";
 const Container = styled(Section)`
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
 `;
 
 const Territories = ({ data }) => (

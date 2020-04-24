@@ -13,6 +13,21 @@ const Container = styled.div`
       flex-direction: row;
     }
 
+    &-list {
+      position: relative;
+      display: block;
+      margin: 0;
+      padding: 0;
+
+      :focus {
+        outline: none;
+      }
+
+      .dragging {
+        cursor: hand;
+      }
+    }
+
     &-slide {
       margin-right: 4rem;
 
