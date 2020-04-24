@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Button, Result } from "antd";
+import { Result } from "antd";
+
+import Button from "../components/ui/button";
 
 const Container = styled.div`
   display: flex;

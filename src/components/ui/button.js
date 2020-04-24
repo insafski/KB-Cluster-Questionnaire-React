@@ -3,19 +3,22 @@ import styled from "styled-components";
 
 const Button = styled(AntButton)`
   &.ant-btn {
-    padding-left: 3rem;
-    padding-right: 3rem;
-    height: 4rem;
-    border-radius: 2rem;
-    font-weight: var(--font-weight-body);
-    font-size: var(--font-size-body-s);
-    line-height: var(--line-height-s);
-
     :active,
     :hover,
     :focus {
       color: var(--color-primary);
       border-color: var(--color-primary);
+    }
+
+    &-primary,
+    &-secondary {
+      padding-left: 3rem;
+      padding-right: 3rem;
+      height: 4rem;
+      border-radius: 2rem;
+      font-weight: var(--font-weight-body);
+      font-size: var(--font-size-body-s);
+      line-height: var(--line-height-s);
     }
 
     &-primary {
@@ -44,6 +47,7 @@ const Button = styled(AntButton)`
 
     &-link {
       color: var(--color-primary);
+      border: 0;
 
       :hover,
       :focus {

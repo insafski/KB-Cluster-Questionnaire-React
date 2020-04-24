@@ -20,7 +20,7 @@ const Message = ({ status, title, link }) => (
         ...(link
           ? [
               <Link key="survey" to={link}>
-                <Button>Следующий опрос</Button>
+                <Button type="secondary">Следующий опрос</Button>
               </Link>
             ]
           : [])
