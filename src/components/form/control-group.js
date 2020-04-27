@@ -2,7 +2,7 @@ import React from "react";
 import { Checkbox, Form, Radio } from "antd";
 import styled from "styled-components";
 
-import { apiUrl } from "../../config";
+import { API_HOST } from "../../config";
 
 const Container = styled.div`
   .ant-checkbox {
@@ -56,7 +56,7 @@ const ControlGroup = ({ name, label, type, defaultValue, options }) => {
             <Container key={i}>
               <Component {...{ value }}>
                 {value}
-                {image && <img alt={value} src={apiUrl + image} />}
+                {image && <img alt={value} src={API_HOST + image} />}
               </Component>
             </Container>
           );

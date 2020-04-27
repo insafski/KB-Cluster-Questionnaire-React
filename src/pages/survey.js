@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { Skeleton } from "antd";
@@ -33,19 +33,27 @@ const InnerContainer = styled.div`
   max-width: 40rem;
 `;
 
-const Survey = ({ history }) => {
+const Survey = ({ history, location }) => {
   const query = useQueryString();
   const slug = query.get("t");
   const formSuccess = query.get("success");
   const formError = query.get("error");
+  const { state } = location;
+  const { isSuccess, isError } = state ?? {};
 
   const { data, loading, error } = useQuery(FORM_QUERY, {
     variables: { slug }
   });
   const [addResponse] = useMutation(ADD_RESPONSE_MUTATION, {
-    onCompleted: () => history.push(`/form?t=${slug}&success=true`),
-    onError: () => history.push("&error=true")
+    onCompleted: () =>
+      history.push(`/form?t=${slug}&success=true`, { isSuccess: true }),
+    onError: () => history.push("&error=true", { isError: true })
   });
+
+  useEffect(() => {
+    ((formSuccess && !isSuccess) || (formError && !isError)) &&
+      history.push(`/form?t=${slug}`);
+  }, [formError, formSuccess, isError, isSuccess, history, slug]);
 
   const { id, Name, Description, Questions, city } =
     data?.territories?.[0] ?? {};
@@ -69,9 +77,9 @@ const Survey = ({ history }) => {
 
   const handleForm = () => {
     switch (true) {
-      case Questions && !formSuccess && !formError:
+      case Questions && !isSuccess && !isError:
         return <Form fields={Questions} {...{ onFinish }} />;
-      case formSuccess === "true":
+      case formSuccess === "true" && isSuccess:
         return (
           <Message
             status="success"
@@ -79,7 +87,7 @@ const Survey = ({ history }) => {
             link={`/form?t=${nextSlug}`}
           />
         );
-      case formError === "true":
+      case formError === "true" && isError:
         return <Message status="error" title="Ошибка" />;
       default:
         return <Skeleton paragraph={{ rows: 12 }} />;

@@ -10,7 +10,7 @@ import { StateContext } from "../context";
 import Survey from "./survey";
 import Header from "../components/header";
 import Error from "./error";
-import { cityName } from "../config";
+import { CITY_NAME } from "../config";
 
 const Container = styled.div`
   height: 100vh;
@@ -18,7 +18,7 @@ const Container = styled.div`
 `;
 
 const App = () => {
-  const slug = cityName;
+  const slug = CITY_NAME;
   const { data, loading, error } = useQuery(CITY_QUERY, {
     variables: { slug }
   });

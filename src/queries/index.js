@@ -24,6 +24,7 @@ const CITY_QUERY = gql`
         Logotypes {
           url
         }
+        map
         slug
       }
       theme {

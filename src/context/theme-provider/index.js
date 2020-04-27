@@ -6,7 +6,7 @@ import defaultDark from "./theme/default/dark";
 import domRF from "./theme/dom-rf";
 import GlobalStyle from "./global-style";
 import { StateContext } from "../index";
-import { theme } from "../../config";
+import { THEME } from "../../config";
 
 const ThemeProvider = ({ children }) => {
   const {
@@ -48,7 +48,7 @@ const ThemeProvider = ({ children }) => {
   };
 
   return (
-    <Theme theme={handleTheme(theme)}>
+    <Theme theme={handleTheme(THEME)}>
       <>
         <GlobalStyle />
         {children}

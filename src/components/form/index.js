@@ -15,6 +15,7 @@ const Container = styled.div`
     margin: 2rem 0;
 
     .ant-checkbox {
+      align-self: start;
       margin-top: 0.25rem;
       margin-right: 0.5rem;
     }

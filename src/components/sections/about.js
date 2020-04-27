@@ -8,12 +8,12 @@ import Button from "../ui/button";
 import Heading from "../ui/heading";
 import Paragraph from "../ui/paragraph";
 import Logos from "../logos";
-import { apiUrl } from "../../config";
+import { API_HOST } from "../../config";
 
 const Container = styled(Section)`
   flex-direction: column;
   justify-content: center;
-  background-image: ${({ img }) => img && `url(${apiUrl + img})`};
+  background-image: ${({ img }) => img && `url(${API_HOST + img})`};
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

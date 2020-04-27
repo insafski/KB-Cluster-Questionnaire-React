@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 
 import Heading from "../ui/heading";
 import Numbers from "./numbers";
-import { apiUrl } from "../../config";
+import Map from "../map";
 
 const Container = styled.div`
   display: grid;
@@ -27,16 +27,8 @@ const Info = styled(ReactMarkdown)`
   margin-bottom: 2rem;
 `;
 
-const Map = styled.div`
-  background-image: ${({ img }) => img && `url(${apiUrl + img})`};
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: var(--color-light-grey);
-`;
-
 const Tab = ({ data }) => {
-  const { Name, Description, LeadMap, LeadMapMeta } = data;
+  const { Name, Description, map, LeadMapMeta } = data;
 
   return (
     <Container>
@@ -45,7 +37,7 @@ const Tab = ({ data }) => {
         <Info source={Description || "Нет описания"} />
         <Numbers data={LeadMapMeta} />
       </Meta>
-      <Map img={LeadMap?.url} />
+      <Map data={map} />
     </Container>
   );
 };

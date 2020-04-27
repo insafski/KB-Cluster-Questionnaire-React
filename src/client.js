@@ -1,9 +1,9 @@
 import ApolloClient from "apollo-boost";
 
-import { endpoint } from "./config";
+import { ENDPOINT } from "./config";
 
 const client = new ApolloClient({
-  uri: endpoint || "http://localhost:1337/graphql"
+  uri: ENDPOINT || "http://localhost:1337/graphql"
 });
 
 export default client;
