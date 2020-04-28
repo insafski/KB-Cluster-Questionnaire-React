@@ -14,6 +14,11 @@ const Container = styled(Section)`
   flex-direction: column;
   justify-content: center;
 
+  > div {
+    display: flex;
+    flex-direction: column;
+  }
+
   h2,
   h3,
   li,
@@ -78,12 +83,16 @@ const List = styled.ul`
   }
 `;
 
-const VideoContainer = styled.div`
+const DescriptionContainer = styled.div`
   display: grid;
   align-items: flex-start;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 6rem;
   margin-bottom: 4rem;
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const items = [
@@ -100,46 +109,44 @@ const Participate = ({ data }) => {
   return (
     <Container id="participate" bgColor="var(--color-secondary)">
       <Heading as="h2">Принять участие</Heading>
-      <VideoContainer>
-        <div>
-          <List>
-            {items.map((item, i) => (
-              <Text key={i} as="li" type="option">
-                {item}
-              </Text>
-            ))}
-          </List>
-          {territories && (
-            <Radio.Group
-              onChange={e =>
-                dispatch({
-                  type: "CHANGE_TERRITORY",
-                  payload: e.target.value
-                })
-              }
-            >
-              {territories.map((item, i) => {
-                const { Name, slug } = item;
+      <DescriptionContainer>
+        <List>
+          {items.map((item, i) => (
+            <Text key={i} as="li" type="option">
+              {item}
+            </Text>
+          ))}
+        </List>
+        <Video link={PresentationVideoLink} />{" "}
+      </DescriptionContainer>
+      {territories && (
+        <Radio.Group
+          onChange={e =>
+            dispatch({
+              type: "CHANGE_TERRITORY",
+              payload: e.target.value
+            })
+          }
+        >
+          {territories.map((item, i) => {
+            const { Name, slug } = item;
 
-                return (
-                  <Radio
-                    key={i}
-                    checked={slug === territory}
-                    value={slug}
-                    buttonStyle="solid"
-                  >
-                    <Text type="option">{Name}</Text>
-                  </Radio>
-                );
-              })}
-            </Radio.Group>
-          )}
-          <Link to={`/form${territory ? `?t=${territory}` : ""}`}>
-            <Button type="primary">Перейти к опросу</Button>
-          </Link>
-        </div>
-        <Video link={PresentationVideoLink} />
-      </VideoContainer>
+            return (
+              <Radio
+                key={i}
+                checked={slug === territory}
+                value={slug}
+                buttonStyle="solid"
+              >
+                <Text type="option">{Name}</Text>
+              </Radio>
+            );
+          })}
+        </Radio.Group>
+      )}
+      <Link to={`/form${territory ? `?t=${territory}` : ""}`}>
+        <Button type="primary">Перейти к опросу</Button>
+      </Link>
     </Container>
   );
 };

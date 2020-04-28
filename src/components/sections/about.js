@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Skeleton } from "antd";
@@ -9,6 +9,8 @@ import Heading from "../ui/heading";
 import Paragraph from "../ui/paragraph";
 import Logos from "../logos";
 import { API_HOST } from "../../config";
+import { handleMinWidth } from "../../utils";
+import { StateContext } from "../../context";
 
 const Container = styled(Section)`
   flex-direction: column;
@@ -18,14 +20,23 @@ const Container = styled(Section)`
   background-position: center;
   background-repeat: no-repeat;
 
-  p,
-  .ant-skeleton-content {
-    margin-bottom: 3rem;
-    max-width: 60%;
+  @media screen and (min-width: ${({ theme }) =>
+      handleMinWidth(theme.breakpoint.mobile)}) {
+    p,
+    .ant-skeleton-content {
+      margin-bottom: 3rem;
+      max-width: 60%;
+    }
   }
 
-  .ant-skeleton-title {
-    max-width: 40%;
+  .ant-skeleton:not(.ant-skeleton-element) {
+    + .ant-skeleton-element {
+      .ant-skeleton-button {
+        height: 4rem;
+        width: 8rem;
+        border-radius: 2rem;
+      }
+    }
   }
 `;
 const InnerContainer = styled.div`
@@ -33,25 +44,29 @@ const InnerContainer = styled.div`
 `;
 
 const About = ({ data }) => {
+  const {
+    state: { loading }
+  } = useContext(StateContext);
   const { Name, description, background } = data ?? {};
 
   return (
     <Container id="about" img={background?.url}>
       <InnerContainer>
         <Logos />
-        {Name ? (
-          <Heading as="h1">{Name}</Heading>
+        {!loading && Name && description ? (
+          <>
+            <Heading as="h1">{Name}</Heading>
+            <Paragraph type="primary">{description}</Paragraph>
+            <Link to="#participate">
+              <Button type="primary">Перейти к опросу</Button>
+            </Link>
+          </>
         ) : (
-          <Skeleton paragraph={false} />
+          <>
+            <Skeleton />
+            <Skeleton.Button />
+          </>
         )}
-        {description ? (
-          <Paragraph type="primary">{description}</Paragraph>
-        ) : (
-          <Skeleton title={false} />
-        )}
-        <Link to="#participate">
-          <Button type="primary">Перейти к опросу</Button>
-        </Link>
       </InnerContainer>
     </Container>
   );

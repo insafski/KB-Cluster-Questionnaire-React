@@ -83,9 +83,9 @@ const GlobalStyle = createGlobalStyle`
         transition-duration: 0.3s;
         transition-timing-function: ease;
   
-        @media (max-width: ${breakpoint.desktop}) {}
-        @media (max-width: ${breakpoint.tablet}) {}
-        @media (max-width: ${breakpoint.mobile}) {}
+        @media screen and (max-width: ${breakpoint.desktop}) {}
+        @media screen and (max-width: ${breakpoint.tablet}) {}
+        @media screen and (max-width: ${breakpoint.mobile}) {}
       }   
       
       p, span {
@@ -95,6 +95,10 @@ const GlobalStyle = createGlobalStyle`
       img {
         max-width: 100%; 
         height: auto
+      }
+      
+      ::selection {
+        background-color: var(--color-primary);
       }
     `;
   }}

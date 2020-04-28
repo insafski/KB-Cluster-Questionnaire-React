@@ -22,11 +22,20 @@ const TitleContainer = styled.div`
   max-width: 40rem;
   width: 100%;
   height: 100%;
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    padding: 4rem 2.5rem;
+  }
 `;
 const FormContainer = styled.div`
   margin: 0 5rem 10rem;
   padding: 4.5rem;
   background-color: var(--color-secondary);
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    margin: 0;
+    padding: 1.25rem;
+  }
 `;
 const InnerContainer = styled.div`
   margin: 0 auto;
