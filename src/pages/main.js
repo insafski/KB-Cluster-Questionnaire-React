@@ -21,6 +21,8 @@ const Container = styled.div`
 const Main = ({ data, loading, location }) => {
   const { dispatch } = useContext(StateContext);
   const { hash } = location ?? {};
+  const [city] = data?.cities ?? [];
+  const { territories, meta } = city ?? {};
 
   useEffect(() => {
     if (hash) {
@@ -37,10 +39,10 @@ const Main = ({ data, loading, location }) => {
 
   return (
     <Container>
-      <About data={data?.cities?.[0]} />
-      <Territories data={data?.cities?.[0]?.territories} />
-      <Participate data={data?.cities?.[0]} />
-      <Footer data={data?.cities?.[0]?.site} />
+      <About data={city} />
+      <Territories data={territories} />
+      <Participate data={city} />
+      <Footer data={meta} />
     </Container>
   );
 };

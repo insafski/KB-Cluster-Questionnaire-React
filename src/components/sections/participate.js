@@ -5,10 +5,10 @@ import { Radio } from "antd";
 
 import { StateContext } from "../../context";
 import Section from "../section";
-import Video from "../video";
 import Button from "../ui/button";
 import Heading from "../ui/heading";
 import Text from "../ui/text";
+import Video from "../video";
 
 const Container = styled(Section)`
   flex-direction: column;
@@ -104,7 +104,9 @@ const items = [
 const Participate = ({ data }) => {
   const { state, dispatch } = useContext(StateContext);
   const { territory } = state;
-  const { territories, PresentationVideoLink } = data ?? {};
+  const { territories } = data ?? {};
+  const videoId = territories?.filter(item => item.slug === territory)?.[0]
+    ?.videoId;
 
   return (
     <Container id="participate" bgColor="var(--color-secondary)">
@@ -117,7 +119,7 @@ const Participate = ({ data }) => {
             </Text>
           ))}
         </List>
-        <Video link={PresentationVideoLink} />{" "}
+        <Video {...{ videoId }} />
       </DescriptionContainer>
       {territories && (
         <Radio.Group

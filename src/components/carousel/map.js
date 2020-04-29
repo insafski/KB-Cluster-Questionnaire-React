@@ -2,13 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import DeckGL from "@deck.gl/react";
 import { GeoJsonLayer } from "@deck.gl/layers";
 import { StaticMap } from "react-map-gl";
+import WebMercatorViewport from "viewport-mercator-project";
 import styled, { ThemeContext } from "styled-components";
-import geojsonExtent from "@mapbox/geojson-extent";
-import geoViewport from "@mapbox/geo-viewport";
-import buffer from "@turf/buffer";
+import bbox from "@turf/bbox";
 
-import { MAPBOX_TOKEN } from "../config";
-import { hexToRgb } from "../utils";
+import { MAPBOX_TOKEN } from "../../config";
+import { hexToRgb } from "../../utils";
 
 const Container = styled.div`
   position: relative;
@@ -25,28 +24,31 @@ const Map = ({ data }) => {
   });
   const [canvasSize, setCanvasSize] = useState([]);
 
-  const getLayerCenter = (data, size) =>
-    geoViewport.viewport(geojsonExtent(buffer(data, 0.5)), size);
+  const getBounds = data => {
+    const getCorner = (start, end) => bbox(data).slice(start, end);
 
-  const handleViewState = ({ center, zoom }) => ({
-    longitude: center[0],
-    latitude: center[1],
-    zoom,
-    pitch: 0,
-    bearing: 0
-  });
+    return [getCorner(0, 2), getCorner(2, 4)];
+  };
 
   useEffect(() => {
+    const handleViewState = (data, width, height, padding) =>
+      new WebMercatorViewport({
+        width,
+        height
+      }).fitBounds(getBounds(data), {
+        padding
+      });
+
     data &&
       canvasSize &&
-      setViewState(handleViewState(getLayerCenter(data, canvasSize)));
+      setViewState(handleViewState(data, ...canvasSize, 100));
   }, [data, canvasSize]);
 
   const layers = [
     new GeoJsonLayer({
       id: "territory",
       data,
-      filled: true,
+      stroked: false,
       getFillColor: hexToRgb(theme.color.primary),
       opacity: 0.5
     })

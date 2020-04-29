@@ -4,12 +4,10 @@
   "private": true,
   "dependencies": {
     "@apollo/react-hooks": "^3.1.4",
-    "@mapbox/geo-viewport": "^0.4.0",
-    "@mapbox/geojson-extent": "^0.3.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "@turf/buffer": "^5.1.5",
+    "@turf/bbox": "^6.0.1",
     "antd": "^4.1.1",
     "apollo-boost": "^0.4.7",
     "babel-plugin-import": "^1.13.0",
@@ -26,7 +24,8 @@
     "react-markdown": "^4.3.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
-    "styled-components": "^5.1.0"
+    "styled-components": "^5.1.0",
+    "viewport-mercator-project": "^7.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

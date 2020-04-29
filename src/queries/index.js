@@ -1,7 +1,7 @@
 import { gql } from "apollo-boost";
 
 const CITY_QUERY = gql`
-  query CityQuery($slug: String) {
+  query CityQuery($slug: String!) {
     cities(where: { slug: $slug }) {
       id
       Name
@@ -10,6 +10,8 @@ const CITY_QUERY = gql`
       background {
         url
       }
+      latitude
+      longitude
       territories {
         id
         Name
@@ -26,6 +28,7 @@ const CITY_QUERY = gql`
         }
         map
         slug
+        videoId
       }
       theme {
         name
@@ -34,7 +37,7 @@ const CITY_QUERY = gql`
         primary
         font
       }
-      site {
+      meta {
         footer
         logotypes {
           url
@@ -45,7 +48,7 @@ const CITY_QUERY = gql`
 `;
 
 const FORM_QUERY = gql`
-  query FormQuery($slug: String) {
+  query FormQuery($slug: String!) {
     territories(where: { slug: $slug }) {
       id
       Name
@@ -63,7 +66,7 @@ const FORM_QUERY = gql`
 `;
 
 const ADD_RESPONSE_MUTATION = gql`
-  mutation AddResponseMutation($data: ResponseInput) {
+  mutation AddResponseMutation($data: ResponseInput!) {
     createResponse(input: { data: $data }) {
       response {
         name

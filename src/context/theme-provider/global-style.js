@@ -9,8 +9,7 @@ const GlobalStyle = createGlobalStyle`
       font,
       fontWeight,
       lineHeight,
-      shadow,
-      breakpoint
+      shadow
     } = theme;
 
     return `
@@ -82,10 +81,6 @@ const GlobalStyle = createGlobalStyle`
         transition-property: background-color, color;
         transition-duration: 0.3s;
         transition-timing-function: ease;
-  
-        @media screen and (max-width: ${breakpoint.desktop}) {}
-        @media screen and (max-width: ${breakpoint.tablet}) {}
-        @media screen and (max-width: ${breakpoint.mobile}) {}
       }   
       
       p, span {
