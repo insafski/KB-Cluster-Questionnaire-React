@@ -10,6 +10,12 @@ const Button = styled(AntButton)`
       border-color: var(--color-primary);
     }
 
+    @media screen and (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
+      :not(&-link) {
+        width: 100%;
+      }
+    }
+
     &-primary,
     &-secondary {
       padding-left: 3rem;

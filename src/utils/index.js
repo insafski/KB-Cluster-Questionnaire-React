@@ -47,6 +47,7 @@ const hexToRgb = hex => {
       ]
     : null;
 };
+const handleMinWidth = width => `${parseInt(width) + 1}px`;
 
 export {
   useQueryString,
@@ -54,5 +55,6 @@ export {
   handleWeight,
   handleSize,
   handleLineHeight,
-  hexToRgb
+  hexToRgb,
+  handleMinWidth
 };

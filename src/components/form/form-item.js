@@ -15,6 +15,7 @@ const Container = styled(Form.Item)`
     &-input {
       border: 0.0625rem solid var(--color-grey-second);
       color: var(--color-main-body);
+      font-size: var(--font-size-body-m);
 
       :focus {
         border-color: var(--color-grey-second);

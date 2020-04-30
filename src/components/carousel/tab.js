@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 
 import Heading from "../ui/heading";
 import Numbers from "./numbers";
-import Map from "../map";
+import Map from "./map";
 
 const Container = styled.div`
   display: grid;

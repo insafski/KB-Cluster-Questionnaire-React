@@ -50,15 +50,7 @@ const Footer = ({ data }) => {
     <Container>
       <InnerContainer>
         <nav>
-          {logotypes ? (
-            <div>
-              {logotypes.map(logotype => (
-                <img src={logotype?.url} alt="" />
-              ))}
-            </div>
-          ) : (
-            <Logos />
-          )}
+          <Logos data={logotypes} logoColor="var(--color-white)" />
           {footer ? <Text>{footer}</Text> : <Skeleton />}
         </nav>
       </InnerContainer>

@@ -5,14 +5,19 @@ import { Radio } from "antd";
 
 import { StateContext } from "../../context";
 import Section from "../section";
-import Video from "../video";
 import Button from "../ui/button";
 import Heading from "../ui/heading";
 import Text from "../ui/text";
+import Video from "../video";
 
 const Container = styled(Section)`
   flex-direction: column;
   justify-content: center;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+  }
 
   h2,
   h3,
@@ -78,12 +83,16 @@ const List = styled.ul`
   }
 `;
 
-const VideoContainer = styled.div`
+const DescriptionContainer = styled.div`
   display: grid;
   align-items: flex-start;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 6rem;
   margin-bottom: 4rem;
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const items = [
@@ -95,51 +104,51 @@ const items = [
 const Participate = ({ data }) => {
   const { state, dispatch } = useContext(StateContext);
   const { territory } = state;
-  const { territories, PresentationVideoLink } = data ?? {};
+  const { territories } = data ?? {};
+  const videoId = territories?.filter(item => item.slug === territory)?.[0]
+    ?.videoId;
 
   return (
     <Container id="participate" bgColor="var(--color-secondary)">
       <Heading as="h2">Принять участие</Heading>
-      <VideoContainer>
-        <div>
-          <List>
-            {items.map((item, i) => (
-              <Text key={i} as="li" type="option">
-                {item}
-              </Text>
-            ))}
-          </List>
-          {territories && (
-            <Radio.Group
-              onChange={e =>
-                dispatch({
-                  type: "CHANGE_TERRITORY",
-                  payload: e.target.value
-                })
-              }
-            >
-              {territories.map((item, i) => {
-                const { Name, slug } = item;
+      <DescriptionContainer>
+        <List>
+          {items.map((item, i) => (
+            <Text key={i} as="li" type="option">
+              {item}
+            </Text>
+          ))}
+        </List>
+        <Video {...{ videoId }} />
+      </DescriptionContainer>
+      {territories && (
+        <Radio.Group
+          onChange={e =>
+            dispatch({
+              type: "CHANGE_TERRITORY",
+              payload: e.target.value
+            })
+          }
+        >
+          {territories.map((item, i) => {
+            const { Name, slug } = item;
 
-                return (
-                  <Radio
-                    key={i}
-                    checked={slug === territory}
-                    value={slug}
-                    buttonStyle="solid"
-                  >
-                    <Text type="option">{Name}</Text>
-                  </Radio>
-                );
-              })}
-            </Radio.Group>
-          )}
-          <Link to={`/form${territory ? `?t=${territory}` : ""}`}>
-            <Button type="primary">Перейти к опросу</Button>
-          </Link>
-        </div>
-        <Video link={PresentationVideoLink} />
-      </VideoContainer>
+            return (
+              <Radio
+                key={i}
+                checked={slug === territory}
+                value={slug}
+                buttonStyle="solid"
+              >
+                <Text type="option">{Name}</Text>
+              </Radio>
+            );
+          })}
+        </Radio.Group>
+      )}
+      <Link to={`/form${territory ? `?t=${territory}` : ""}`}>
+        <Button type="primary">Перейти к опросу</Button>
+      </Link>
     </Container>
   );
 };

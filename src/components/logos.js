@@ -1,20 +1,33 @@
-import { Skeleton } from "antd";
 import React from "react";
 import styled from "styled-components";
 
-const Container = styled.div`
+const Container = styled.ul`
   display: flex;
+  padding: 0;
+  list-style: none;
 
-  .ant-skeleton {
-    margin-right: 1rem;
-    width: auto;
+  li:not(:last-child) {
+    margin-right: 3rem;
   }
 `;
+const Logo = styled.div`
+  width: 3rem;
+  height: 3rem;
+  background-color: ${({ logoColor }) => logoColor};
+  mask: url(${({ url }) => url}) no-repeat center;
+`;
 
-const Logos = () => (
+const Logos = ({ data, logoColor }) => (
   <Container>
-    <Skeleton.Button />
-    <Skeleton.Button />
+    {data?.map((item, i) => {
+      const { url } = item ?? {};
+
+      return (
+        <li key={i}>
+          <Logo {...{ url, logoColor }} />
+        </li>
+      );
+    })}
   </Container>
 );
 

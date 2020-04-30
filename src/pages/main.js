@@ -1,20 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 
 import About from "../components/sections/about";
 import Territories from "../components/sections/territories";
 import Participate from "../components/sections/participate";
 import Footer from "../components/footer";
-import Loader from "../components/loader";
+import { handleMinWidth } from "../utils";
+import { StateContext } from "../context";
 
 const Container = styled.div`
   max-height: 100vh;
   overflow-y: scroll;
-  scroll-snap-type: y mandatory;
+
+  @media screen and (min-width: ${({ theme }) =>
+      handleMinWidth(theme.breakpoint.mobile)}) {
+    scroll-snap-type: y mandatory;
+  }
 `;
 
 const Main = ({ data, loading, location }) => {
+  const { dispatch } = useContext(StateContext);
   const { hash } = location ?? {};
+  const [city] = data?.cities ?? [];
+  const { territories, meta } = city ?? {};
 
   useEffect(() => {
     if (hash) {
@@ -25,17 +33,17 @@ const Main = ({ data, loading, location }) => {
         element.scrollIntoView({ block: "start", behavior: "smooth" });
       }
     }
-  }, [hash]);
+
+    dispatch({ type: "CHANGE_LOADING_STATE", payload: loading });
+  }, [dispatch, loading, hash]);
 
   return (
-    <Loader spinning={loading}>
-      <Container>
-        <About data={data?.cities?.[0]} />
-        <Territories data={data?.cities?.[0]?.territories} />
-        <Participate data={data?.cities?.[0]} />
-        <Footer data={data?.cities?.[0]?.site} />
-      </Container>
-    </Loader>
+    <Container>
+      <About data={city} />
+      <Territories data={territories} />
+      <Participate data={city} />
+      <Footer data={meta} />
+    </Container>
   );
 };
 

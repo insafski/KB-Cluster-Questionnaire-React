@@ -12,6 +12,11 @@ const reducer = (state, action) => {
         ...state,
         customTheme: payload
       };
+    case "CHANGE_LOADING_STATE":
+      return {
+        ...state,
+        loading: payload
+      };
     default:
       return state;
   }
