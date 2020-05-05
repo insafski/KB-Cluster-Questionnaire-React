@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { Skeleton } from "antd";
 
-import InnerContainer from "../inner-container";
-import Text from "../ui/text";
-import Logos from "../logos";
+import InnerContainer from "./inner-container";
+import Text from "./ui/text";
+import Logos from "./logos";
 
 const Container = styled.footer`
   padding-top: 3.5rem;
@@ -17,6 +17,10 @@ const Container = styled.footer`
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 12.5rem;
     align-items: flex-start;
+
+    @media screen and (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
+      grid-template-columns: 1fr;
+    }
   }
 
   .ant {
@@ -50,7 +54,7 @@ const Footer = ({ data }) => {
     <Container>
       <InnerContainer>
         <nav>
-          <Logos data={logotypes} logoColor="var(--color-white)" />
+          <Logos data={logotypes} />
           {footer ? <Text>{footer}</Text> : <Skeleton />}
         </nav>
       </InnerContainer>

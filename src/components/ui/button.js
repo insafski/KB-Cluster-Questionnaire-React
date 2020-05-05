@@ -11,7 +11,7 @@ const Button = styled(AntButton)`
     }
 
     @media screen and (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
-      :not(&-link) {
+      :not(.ant-btn-link) {
         width: 100%;
       }
     }
@@ -47,7 +47,7 @@ const Button = styled(AntButton)`
       :active,
       :hover,
       :focus {
-        background-color: var(--color-grey);
+        background-color: var(--color-grey-second);
       }
     }
 

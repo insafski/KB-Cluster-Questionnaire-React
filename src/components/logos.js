@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { API_HOST } from "../config";
 
 const Container = styled.ul`
   display: flex;
@@ -10,21 +11,19 @@ const Container = styled.ul`
     margin-right: 3rem;
   }
 `;
-const Logo = styled.div`
+const Logo = styled.img`
   width: 3rem;
   height: 3rem;
-  background-color: ${({ logoColor }) => logoColor};
-  mask: url(${({ url }) => url}) no-repeat center;
 `;
 
-const Logos = ({ data, logoColor }) => (
+const Logos = ({ data }) => (
   <Container>
     {data?.map((item, i) => {
       const { url } = item ?? {};
 
       return (
         <li key={i}>
-          <Logo {...{ url, logoColor }} />
+          <Logo src={API_HOST + url} alt="" />
         </li>
       );
     })}

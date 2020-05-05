@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 const useQueryString = () => new URLSearchParams(useLocation().search);
@@ -8,6 +9,8 @@ const handleWeight = type => {
   switch (type) {
     case "primary":
       return "var(--font-weight-body)";
+    case "primary-bold":
+      return "var(--font-weight-bold)";
     case "option":
       return "var(--font-weight-semi-bold)";
     case "comment":
@@ -18,6 +21,8 @@ const handleWeight = type => {
 };
 const handleSize = type => {
   switch (type) {
+    case "primary-bold":
+      return "var(--font-size-heading-s)";
     case "secondary":
       return "var(--font-size-body-m)";
     case "comment":
@@ -36,18 +41,37 @@ const handleLineHeight = type => {
       return "var(--line-height-body-m)";
   }
 };
-const hexToRgb = hex => {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-
-  return result
-    ? [
-        parseInt(result[1], 16),
-        parseInt(result[2], 16),
-        parseInt(result[3], 16)
-      ]
-    : null;
-};
 const handleMinWidth = width => `${parseInt(width) + 1}px`;
+const useMediaQuery = query => {
+  const [doesMatch, onSetDoesMatch] = useState(false);
+
+  useEffect(() => {
+    const onUpdateMatch = ({ matches }) => {
+      onSetDoesMatch(matches);
+    };
+
+    const matcher = window.matchMedia(query);
+
+    const isModern = "addEventListener" in matcher;
+    if (isModern) {
+      matcher.addEventListener("change", onUpdateMatch);
+    } else {
+      matcher.addListener(onUpdateMatch);
+    }
+
+    onUpdateMatch(matcher);
+
+    return () => {
+      if (isModern) {
+        matcher.removeEventListener("change", onUpdateMatch);
+      } else {
+        matcher.removeListener(onUpdateMatch);
+      }
+    };
+  }, [query, onSetDoesMatch]);
+
+  return doesMatch;
+};
 
 export {
   useQueryString,
@@ -55,6 +79,6 @@ export {
   handleWeight,
   handleSize,
   handleLineHeight,
-  hexToRgb,
-  handleMinWidth
+  handleMinWidth,
+  useMediaQuery
 };

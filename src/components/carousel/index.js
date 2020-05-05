@@ -1,12 +1,11 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useContext } from "react";
+import styled, { ThemeContext } from "styled-components";
 import Slider from "@ant-design/react-slick";
 
 import Tab from "./tab";
+import { useMediaQuery } from "../../utils";
 
 const Container = styled.div`
-  padding-top: 2rem;
-
   .slick {
     &-track {
       display: flex;
@@ -96,24 +95,39 @@ const Container = styled.div`
   }
 `;
 
-const Carousel = ({ slides }) => (
-  <Container>
-    <Slider
-      arrows={false}
-      accessibility
-      centerMode
-      centerPadding={0}
-      dots
-      draggable
-      focusOnSelect
-      infinite={false}
-      slidesToShow={1}
-    >
-      {slides.map((slide, i) => (
-        <Tab key={i} data={slide} />
-      ))}
-    </Slider>
-  </Container>
-);
+const ConditionalWrapper = ({ condition, wrapper, children }) =>
+  condition ? wrapper(children) : children;
+
+const Carousel = ({ slides }) => {
+  const theme = useContext(ThemeContext);
+  const mobile = useMediaQuery(`(min-width: ${theme.breakpoint.tablet})`);
+
+  return (
+    <Container>
+      <ConditionalWrapper
+        condition={mobile}
+        wrapper={children => (
+          <Slider
+            arrows={false}
+            accessibility
+            centerMode
+            centerPadding={0}
+            dots
+            draggable
+            focusOnSelect
+            infinite={false}
+            slidesToShow={1}
+          >
+            {children}
+          </Slider>
+        )}
+      >
+        {slides.map((slide, i) => (
+          <Tab key={i} data={slide} />
+        ))}
+      </ConditionalWrapper>
+    </Container>
+  );
+};
 
 export default Carousel;

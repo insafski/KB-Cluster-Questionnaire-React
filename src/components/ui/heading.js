@@ -22,29 +22,17 @@ const Heading = styled.h1`
 
   h1& {
     font-size: var(--font-size-heading-xl);
-    margin-bottom: 3rem;
-
-    @media screen and (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
-      font-size: var(--font-size-heading-l);
-    }
+    margin-bottom: 4rem;
   }
 
   h2& {
     font-size: var(--font-size-heading-l);
     margin-bottom: var(--space-x-large);
-
-    @media screen and (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
-      font-size: var(--font-size-heading-m);
-    }
   }
 
   h3& {
     font-size: var(--font-size-heading-m);
     margin-bottom: var(--space-large);
-
-    @media screen and (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
-      font-size: var(--font-size-heading-s);
-    }
   }
 
   h4& {

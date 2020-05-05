@@ -6,16 +6,26 @@ import styled from "styled-components";
 const Container = styled.div`
   > div {
     display: grid;
-    grid-template-rows: auto auto;
+    grid-template-rows: 1fr 1fr;
     grid-auto-columns: auto;
     grid-auto-flow: column;
     grid-column-gap: 4rem;
+
+    @media screen and (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
+      grid-template-rows: 1fr;
+      grid-auto-flow: row;
+
+      span:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+    }
   }
 
   .ant-statistic-content-value {
     margin-bottom: 0.5rem;
     color: var(--color-primary);
-    font-weight: var(--font-weight-bold);
+    font-family: var(--font-body);
+    font-weight: var(--font-weight-black);
     font-size: var(--font-size-heading-s);
     line-height: var(--line-height-body-l);
   }

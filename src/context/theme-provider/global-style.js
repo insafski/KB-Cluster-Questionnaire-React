@@ -59,6 +59,7 @@ const GlobalStyle = createGlobalStyle`
         --font-weight-regular: ${fontWeight.regular};
         --font-weight-semi-bold: ${fontWeight.semiBold};
         --font-weight-bold: ${fontWeight.bold};
+        --font-weight-black: ${fontWeight.black};
   
         /* Line Height */
         --line-height-body-s: ${lineHeight.bodyS};
@@ -70,13 +71,27 @@ const GlobalStyle = createGlobalStyle`
         --shadow-small: ${shadow.small};
         --shadow-large: ${shadow.large};
       }
+      
+      @media screen and (max-width: ${theme.breakpoint.mobile}) {
+        :root {
+          /* Font sizes */
+          --font-size-body-s: ${fontSize.bodyS};
+          --font-size-body-m: ${fontSize.bodyM};
+          --font-size-body-l: ${fontSize.bodyL};
+          --font-size-heading-xs: ${fontSize.headingXS};
+          --font-size-heading-s: ${fontSize.bodyXL};
+          --font-size-heading-m: ${fontSize.headingS};
+          --font-size-heading-l: ${fontSize.headingS};
+          --font-size-heading-xl: ${fontSize.headingL};
+        }
+      }
   
       html body {
         font-family: var(--font-body);
-        font-size: var(--font-size-x-small);
+        font-size: var(--font-size-body-m);
   
         background-color: var(--color-main-bg);
-        color: var(--color-main-text);
+        color: var(--color-main-body);
         
         transition-property: background-color, color;
         transition-duration: 0.3s;
@@ -90,6 +105,15 @@ const GlobalStyle = createGlobalStyle`
       img {
         max-width: 100%; 
         height: auto
+      }
+      
+      .ant-skeleton-content {
+        .ant-skeleton {
+          &-title,
+          &-paragraph > li {
+            background: var(--color-light-grey);
+          }
+        }
       }
       
       ::selection {

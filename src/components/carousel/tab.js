@@ -8,13 +8,39 @@ import Map from "./map";
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 1fr 1fr;
   height: 100%;
   background-color: var(--color-secondary);
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    grid-template-columns: 1fr;
+
+    :not(:last-child) {
+      margin-bottom: 3rem;
+    }
+  }
 `;
 
 const Meta = styled.div`
-  padding: 3.5rem 5rem 4rem;
+  padding: 4rem 3.5rem;
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    padding: 2.5rem 1.75rem;
+
+    p,
+    span {
+      max-width: 80%;
+    }
+  }
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    padding: 1.5rem 1.25rem;
+
+    p,
+    span {
+      max-width: 100%;
+    }
+  }
 
   h3,
   p,

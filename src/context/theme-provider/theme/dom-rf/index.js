@@ -10,7 +10,6 @@ const {
 
 export default {
   ...light,
-  breakpoint: { mobile: "480px", tablet: "960px", desktop: "1440px" },
   color: {
     ...light.color,
     primary: domRFLight,

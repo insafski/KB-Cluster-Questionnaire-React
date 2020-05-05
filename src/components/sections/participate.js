@@ -30,8 +30,9 @@ const Container = styled(Section)`
   .ant-radio {
     &-wrapper {
       display: flex;
-      align-items: center;
+      align-items: baseline;
       margin-bottom: 1rem;
+      white-space: normal;
     }
 
     &-group {
@@ -86,7 +87,10 @@ const List = styled.ul`
 const DescriptionContainer = styled.div`
   display: grid;
   align-items: flex-start;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(${({ theme }) => theme.breakpoint.mobile}, 1fr)
+  );
   grid-column-gap: 6rem;
   margin-bottom: 4rem;
 

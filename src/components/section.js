@@ -9,24 +9,6 @@ const Container = styled.div`
   padding: 6rem 0;
   scroll-snap-align: start;
   background-color: ${({ bgColor }) => bgColor};
-
-  .ant-spin {
-    &-dot {
-      font-size: 2rem;
-    }
-
-    &-container {
-      height: 100%;
-    }
-
-    &-nested-loading {
-      width: 100%;
-
-      > div > .ant-spin {
-        max-height: 100%;
-      }
-    }
-  }
 `;
 
 const Section = ({ children, bgColor, ...props }) => (
