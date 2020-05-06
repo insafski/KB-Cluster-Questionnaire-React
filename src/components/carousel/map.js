@@ -11,8 +11,8 @@ const Container = styled.div`
   position: relative;
   height: 100%;
   width: 100%;
-  min-height: 20rem;
-  min-width: 20rem;
+  min-height: 15rem;
+  min-width: 15rem;
   background-color: var(--color-light-grey);
 
   .ant-spin-nested-loading {
@@ -24,7 +24,7 @@ const Container = styled.div`
   }
 `;
 
-const Map = ({ data }) => {
+const Map = ({ data, isTablet }) => {
   const theme = useContext(ThemeContext);
   const [isLoading, setIsLoading] = useState(true);
   const [viewState, setViewState] = useState({
@@ -53,8 +53,8 @@ const Map = ({ data }) => {
     data &&
       width > 0 &&
       height > 0 &&
-      setViewState(handleViewState(data, width, height, 100));
-  }, [data, width, height]);
+      setViewState(handleViewState(data, width, height, isTablet ? 50 : 100));
+  }, [data, width, height, isTablet]);
 
   return (
     <Loader spinning={isLoading}>

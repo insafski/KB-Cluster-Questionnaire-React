@@ -9,7 +9,7 @@ import Logos from "./logos";
 const Container = styled.footer`
   padding-top: 3.5rem;
   padding-bottom: 9rem;
-  background-color: #3d3d3d;
+  background-color: var(--color-lighter-grey);
   scroll-snap-align: start;
 
   nav {

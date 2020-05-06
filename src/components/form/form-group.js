@@ -6,7 +6,7 @@ import Heading from "../ui/heading";
 
 const FormGroup = ({ label, group }) => (
   <Card>
-    {label && <Heading as="h5">{label}</Heading>}
+    {label && <Heading as="h4">{label}</Heading>}
     {group &&
       group.map((item, i) => {
         const { name, label, required } = item;

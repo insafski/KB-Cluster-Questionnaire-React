@@ -22,8 +22,8 @@ const Button = styled(AntButton)`
       padding-right: 3rem;
       height: 4rem;
       border-radius: 2rem;
-      font-weight: var(--font-weight-body);
-      font-size: var(--font-size-body-s);
+      font-weight: var(--font-weight-semi-bold);
+      font-size: var(--font-size-body-m);
       line-height: var(--line-height-s);
     }
 

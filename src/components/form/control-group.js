@@ -5,11 +5,33 @@ import styled from "styled-components";
 import { API_HOST } from "../../config";
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-large);
+  &:has(.ant-checkbox-checked) {
+    outline: 0.125rem solid var(--color-primary);
+  }
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    flex-direction: column;
+  }
+
   .ant-checkbox {
     margin: 0 1rem;
     width: 1.125rem;
 
+    &-inner {
+      width: 1rem;
+      height: 1rem;
+    }
+
     &-wrapper {
+      flex: 1;
+      padding-right: 1rem;
+
       &,
       span:not(.ant-checkbox) {
         display: flex;
@@ -22,24 +44,35 @@ const Container = styled.div`
         width: 100%;
       }
 
-      margin-bottom: 1.25rem;
-      height: 9rem;
+      min-height: 10rem;
       font-weight: var(--font-weight-semi-bold);
-      background-color: var(--color-white);
-      box-shadow: var(--shadow-large);
       border: 0;
 
-      &-checked {
-        outline: 0.125rem solid var(--color-primary);
+      @media screen and (max-width: ${({ theme }) => theme.breakpoint.tablet}) {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        min-height: auto;
       }
     }
   }
 
   img {
     align-self: flex-start;
-    width: 9rem;
-    height: 9rem;
+    width: 10rem;
+    height: 10rem;
     object-fit: cover;
+
+    @media screen and (max-width: ${({ theme }) => theme.breakpoint.tablet}) {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    flex-direction: column;
+
+    img {
+      width: 100%;
+    }
   }
 `;
 
@@ -54,10 +87,8 @@ const ControlGroup = ({ name, label, type, defaultValue, options }) => {
 
           return (
             <Container key={i}>
-              <Component {...{ value }}>
-                {value}
-                {image && <img alt={value} src={API_HOST + image} />}
-              </Component>
+              {image && <img alt={value} src={API_HOST + image} />}
+              <Component {...{ value }}>{value}</Component>
             </Container>
           );
         })}

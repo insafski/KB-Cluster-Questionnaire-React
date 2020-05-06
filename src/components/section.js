@@ -9,6 +9,14 @@ const Container = styled.div`
   padding: 6rem 0;
   scroll-snap-align: start;
   background-color: ${({ bgColor }) => bgColor};
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    padding: 3rem 0;
+
+    :first-child {
+      padding-top: 6rem;
+    }
+  }
 `;
 
 const Section = ({ children, bgColor, ...props }) => (

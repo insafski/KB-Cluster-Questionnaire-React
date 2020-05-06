@@ -5,41 +5,35 @@ import { Skeleton } from "antd";
 
 import { ADD_RESPONSE_MUTATION, FORM_QUERY } from "../queries";
 import { useQueryString } from "../utils";
-import Loader from "../components/loader";
 import Form from "../components/form";
 import Heading from "../components/ui/heading";
 import Paragraph from "../components/ui/paragraph";
 import Error from "./error";
 import Footer from "../components/footer";
 import Message from "../components/form/message";
+import Section from "../components/section";
+import InnerContainer from "../components/inner-container";
 
 const Container = styled.div`
   width: 100%;
-`;
-const TitleContainer = styled.div`
-  margin: 0 auto;
-  padding: 6rem 2rem;
-  max-width: 40rem;
-  width: 100%;
-  height: 100%;
 
-  @media screen and (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
-    padding: 4rem 2.5rem;
+  ${InnerContainer} {
+    max-width: 40rem;
   }
+`;
+const TitleContainer = styled(Section)`
+  padding-top: 8rem;
+  min-height: auto;
 `;
 const FormContainer = styled.div`
   margin: 0 5rem 10rem;
   padding: 4.5rem;
   background-color: var(--color-secondary);
 
-  @media screen and (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoint.tablet}) {
     margin: 0;
-    padding: 1.25rem;
+    padding: 2rem 1.25rem;
   }
-`;
-const InnerContainer = styled.div`
-  margin: 0 auto;
-  max-width: 40rem;
 `;
 
 const Survey = ({ history, location }) => {
@@ -104,27 +98,25 @@ const Survey = ({ history, location }) => {
   };
 
   return (
-    <Loader spinning={loading}>
-      <Container>
-        <TitleContainer>
-          {Name && Description ? (
-            <>
-              <Heading as="h2">{Name}</Heading>
-              <Paragraph>{Description}</Paragraph>
-            </>
-          ) : (
-            <Skeleton active />
-          )}
-        </TitleContainer>
-        <FormContainer>
-          <InnerContainer>
-            {handleForm()}
-            {error && <Error message={error?.message} />}
-          </InnerContainer>
-        </FormContainer>
-        <Footer />
-      </Container>
-    </Loader>
+    <Container>
+      <TitleContainer>
+        {!loading && Name && Description ? (
+          <>
+            <Heading as="h2">{Name}</Heading>
+            <Paragraph>{Description}</Paragraph>
+          </>
+        ) : (
+          <Skeleton />
+        )}
+      </TitleContainer>
+      <FormContainer>
+        <InnerContainer>
+          {handleForm()}
+          {error && <Error message={error?.message} />}
+        </InnerContainer>
+      </FormContainer>
+      <Footer />
+    </Container>
   );
 };
 

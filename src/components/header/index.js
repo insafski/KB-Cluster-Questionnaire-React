@@ -73,7 +73,11 @@ const TitleContainer = styled.div`
     align-items: center;
 
     && button {
-      display: block;
+      display: flex;
+
+      > .anticon {
+        line-height: 0.75;
+      }
     }
   }
 `;

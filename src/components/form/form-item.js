@@ -24,8 +24,11 @@ const Container = styled(Form.Item)`
     }
 
     &-checkbox {
-      :hover .ant-checkbox-inner {
-        border-color: var(--color-grey);
+      :hover,
+      &-wrapper:hover {
+        .ant-checkbox-inner {
+          border-color: var(--color-primary);
+        }
       }
 
       &-group {

@@ -77,10 +77,10 @@ const GlobalStyle = createGlobalStyle`
           /* Font sizes */
           --font-size-body-s: ${fontSize.bodyS};
           --font-size-body-m: ${fontSize.bodyM};
-          --font-size-body-l: ${fontSize.bodyL};
-          --font-size-heading-xs: ${fontSize.headingXS};
+          --font-size-body-l: ${fontSize.bodyM};
+          --font-size-heading-xs: ${fontSize.bodyL};
           --font-size-heading-s: ${fontSize.bodyXL};
-          --font-size-heading-m: ${fontSize.headingS};
+          --font-size-heading-m: ${fontSize.bodyXL};
           --font-size-heading-l: ${fontSize.headingS};
           --font-size-heading-xl: ${fontSize.headingL};
         }

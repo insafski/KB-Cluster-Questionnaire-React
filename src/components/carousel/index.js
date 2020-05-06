@@ -100,12 +100,12 @@ const ConditionalWrapper = ({ condition, wrapper, children }) =>
 
 const Carousel = ({ slides }) => {
   const theme = useContext(ThemeContext);
-  const mobile = useMediaQuery(`(min-width: ${theme.breakpoint.tablet})`);
+  const isTablet = useMediaQuery(`(max-width: ${theme.breakpoint.tablet})`);
 
   return (
     <Container>
       <ConditionalWrapper
-        condition={mobile}
+        condition={!isTablet}
         wrapper={children => (
           <Slider
             arrows={false}
@@ -123,7 +123,7 @@ const Carousel = ({ slides }) => {
         )}
       >
         {slides.map((slide, i) => (
-          <Tab key={i} data={slide} />
+          <Tab key={i} data={slide} {...{ isTablet }} />
         ))}
       </ConditionalWrapper>
     </Container>

@@ -53,7 +53,7 @@ const Info = styled(ReactMarkdown)`
   margin-bottom: 2rem;
 `;
 
-const Tab = ({ data }) => {
+const Tab = ({ data, isTablet }) => {
   const { Name, Description, map, LeadMapMeta } = data;
 
   return (
@@ -63,7 +63,7 @@ const Tab = ({ data }) => {
         <Info source={Description || "Нет описания"} />
         <Numbers data={LeadMapMeta} />
       </Meta>
-      <Map data={map} />
+      <Map data={map} {...{ isTablet }} />
     </Container>
   );
 };
