@@ -45,10 +45,6 @@ const App = () => {
           <meta name="description" content={title} />
           <meta property="og:title" content={title} />
           <meta property="og:type" content="website" />
-          {/*<meta*/}
-          {/*  property="og:url"*/}
-          {/*  content="http://www.imdb.com/title/tt0117500/"*/}
-          {/*/>*/}
           {data?.cities?.[0]?.background?.url && (
             <meta
               property="og:image"
@@ -61,18 +57,20 @@ const App = () => {
       <Container>
         <Header {...{ title }} />
         {error && <Error message={error?.message} />}
-        <Switch>
-          <Route
-            path="/"
-            exact
-            render={props => <Main {...{ data, title, loading, ...props }} />}
-          />
-          <Route
-            path="/form"
-            exact
-            render={props => <Survey {...{ title, ...props }} />}
-          />
-        </Switch>
+        {data && (
+          <Switch>
+            <Route
+              path="/"
+              exact
+              render={props => <Main {...{ data, title, loading, ...props }} />}
+            />
+            <Route
+              path="/form"
+              exact
+              render={props => <Survey {...{ title, ...props }} />}
+            />
+          </Switch>
+        )}
       </Container>
     </Router>
   );
