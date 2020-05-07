@@ -5,7 +5,12 @@ const { greySecond, darkGrey, lighterGrey, white, black } = color;
 const { inter, monospace } = font;
 
 export default {
-  breakpoint: { mobile: "480px", tablet: "768px", desktop: "960px" },
+  breakpoint: {
+    mobile: "480px",
+    tablet: "768px",
+    desktop: "960px",
+    desktopL: "1200px"
+  },
   fontSize: {
     bodyS: "0.875rem",
     bodyM: "1rem",

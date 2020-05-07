@@ -39,8 +39,11 @@ const CITY_QUERY = gql`
       }
       meta {
         footer
-        logotypes {
-          url
+        logos {
+          name
+          images {
+            url
+          }
         }
       }
     }

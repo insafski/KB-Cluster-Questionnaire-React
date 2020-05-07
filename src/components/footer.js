@@ -3,23 +3,54 @@ import styled from "styled-components";
 import { Skeleton } from "antd";
 
 import InnerContainer from "./inner-container";
-import Text from "./ui/text";
+import Paragraph from "./ui/paragraph";
 import Logos from "./logos";
 
 const Container = styled.footer`
-  padding-top: 3.5rem;
-  padding-bottom: 9rem;
+  padding-top: 5rem;
+  padding-bottom: 10rem;
   background-color: var(--color-lighter-grey);
   scroll-snap-align: start;
 
+  @media screen and (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+  }
+
   nav {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 12.5rem;
-    align-items: flex-start;
+    grid-template-columns: auto auto;
+    grid-gap: 2rem;
+    justify-content: space-between;
 
-    @media screen and (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    @media screen and (max-width: ${({ theme }) => theme.breakpoint.desktopL}) {
       grid-template-columns: 1fr;
+    }
+
+    ${Paragraph} {
+      @media screen and (max-width: ${({ theme }) => theme.breakpoint.tablet}) {
+        justify-self: center;
+        text-align: center;
+      }
+
+      p {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2.5rem;
+        white-space: nowrap;
+      }
+
+      a {
+        padding-top: 0.5rem;
+        font-size: var(--font-size-heading-xs);
+        font-weight: var(--font-weight-heading);
+        line-height: var(--line-height-heading);
+        color: var(--color-secondary);
+
+        :hover {
+          color: var(--color-primary);
+        }
+      }
     }
   }
 
@@ -48,14 +79,14 @@ const Container = styled.footer`
 `;
 
 const Footer = ({ data }) => {
-  const { footer, logotypes } = data ?? {};
+  const { footer, logos } = data ?? {};
 
   return (
     <Container>
       <InnerContainer>
         <nav>
-          <Logos data={logotypes} />
-          {footer ? <Text>{footer}</Text> : <Skeleton />}
+          <Logos data={logos} />
+          {footer ? <Paragraph>{footer}</Paragraph> : <Skeleton />}
         </nav>
       </InnerContainer>
     </Container>

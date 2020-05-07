@@ -52,7 +52,7 @@ const About = ({ data }) => {
         <Info
           {...{ loading, description }}
           name={Name}
-          logotypes={meta?.logotypes}
+          logotypes={meta?.logos}
         />
       </InnerContainer>
       <BgMap {...{ latitude, longitude }} />
