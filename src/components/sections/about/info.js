@@ -66,8 +66,6 @@ const Info = ({ loading, name, description, partners }) => (
             .map((logo, i) => {
               const { link, image } = logo;
 
-              console.log(link);
-
               return (
                 <li key={i}>
                   <ConditionalWrapper
