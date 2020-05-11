@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 const useQueryString = () => new URLSearchParams(useLocation().search);
@@ -22,7 +22,7 @@ const handleWeight = type => {
 const handleSize = type => {
   switch (type) {
     case "primary-bold":
-      return "var(--font-size-heading-s)";
+      return "var(--font-size-body-xl)";
     case "secondary":
       return "var(--font-size-body-m)";
     case "comment":

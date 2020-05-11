@@ -71,6 +71,25 @@ const Container = styled(Form.Item)`
     &-checkbox + span {
       padding-left: 1rem;
     }
+
+    &-radio {
+      &-group {
+        margin-bottom: 2.5rem;
+      }
+
+      &-wrapper:hover .ant-radio,
+      &:hover .ant-radio-inner,
+      &-inner,
+      &-input:focus + .ant-radio-inner,
+      &-checked,
+      &-checked::after {
+        border-color: var(--color-primary);
+      }
+
+      &-inner::after {
+        background-color: var(--color-primary);
+      }
+    }
   }
 `;
 

@@ -12,7 +12,7 @@ const MapContainer = styled.div`
   right: 0;
   z-index: -1;
   opacity: ${({ isLoading }) => (isLoading ? 0 : 1)};
-  transition: 0.3s opacity ease-in-out;
+  transition: opacity 0.3s ease-in-out;
 `;
 
 const BgMap = ({ latitude, longitude }) => {

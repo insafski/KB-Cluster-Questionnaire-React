@@ -9,18 +9,11 @@ import Form from "../components/form";
 import Heading from "../components/ui/heading";
 import Paragraph from "../components/ui/paragraph";
 import Error from "./error";
-import Footer from "../components/footer";
 import Message from "../components/form/message";
 import Section from "../components/section";
 import InnerContainer from "../components/inner-container";
+import Footer from "../components/footer";
 
-const Container = styled.div`
-  width: 100%;
-
-  ${InnerContainer} {
-    max-width: 40rem;
-  }
-`;
 const TitleContainer = styled(Section)`
   padding-top: 8rem;
   min-height: auto;
@@ -32,7 +25,16 @@ const FormContainer = styled.div`
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoint.tablet}) {
     margin: 0;
-    padding: 2rem 1.25rem;
+    padding: 2rem 0;
+  }
+`;
+const Container = styled.div`
+  width: 100%;
+
+  ${TitleContainer}, ${FormContainer} {
+    ${InnerContainer} {
+      max-width: 40rem;
+    }
   }
 `;
 
@@ -47,6 +49,8 @@ const Survey = ({ history, location }) => {
   const { data, loading, error } = useQuery(FORM_QUERY, {
     variables: { slug }
   });
+  const { id, Name, Description, Questions, city } =
+    data?.territories?.[0] ?? {};
   const [addResponse] = useMutation(ADD_RESPONSE_MUTATION, {
     onCompleted: () =>
       history.push(`/form?t=${slug}&success=true`, { isSuccess: true }),
@@ -58,8 +62,6 @@ const Survey = ({ history, location }) => {
       history.push(`/form?t=${slug}`);
   }, [formError, formSuccess, isError, isSuccess, history, slug]);
 
-  const { id, Name, Description, Questions, city } =
-    data?.territories?.[0] ?? {};
   const onFinish = data => {
     const { name, surname, email, comment, ...answers } = data;
 
@@ -115,7 +117,7 @@ const Survey = ({ history, location }) => {
           {error && <Error message={error?.message} />}
         </InnerContainer>
       </FormContainer>
-      <Footer />
+      <Footer data={city?.meta} />
     </Container>
   );
 };

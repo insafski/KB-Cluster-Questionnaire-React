@@ -11,6 +11,7 @@ const Container = styled.div`
   grid-template-columns: 1fr 1fr;
   height: 100%;
   background-color: var(--color-secondary);
+  box-shadow: var(--shadow-large);
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoint.tablet}) {
     grid-template-columns: 1fr;

@@ -3,6 +3,7 @@ import styled, { ThemeContext } from "styled-components";
 import Slider from "@ant-design/react-slick";
 
 import Tab from "./tab";
+import ConditionalWrapper from "../conditional-wrapper";
 import { useMediaQuery } from "../../utils";
 
 const Container = styled.div`
@@ -94,9 +95,6 @@ const Container = styled.div`
     }
   }
 `;
-
-const ConditionalWrapper = ({ condition, wrapper, children }) =>
-  condition ? wrapper(children) : children;
 
 const Carousel = ({ slides }) => {
   const theme = useContext(ThemeContext);

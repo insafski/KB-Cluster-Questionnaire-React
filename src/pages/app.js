@@ -36,7 +36,7 @@ const App = () => {
       handleState("CHANGE_THEME", data?.cities?.[0]?.theme);
   }, [dispatch, data]);
 
-  const title = data?.cities?.[0]?.title;
+  const { title } = data?.cities?.[0] ?? {};
 
   return (
     <Router>

@@ -2,13 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { Skeleton } from "antd";
 
-import InnerContainer from "./inner-container";
-import Paragraph from "./ui/paragraph";
+import InnerContainer from "../inner-container";
+import Paragraph from "../ui/paragraph";
 import Logos from "./logos";
 
 const Container = styled.footer`
-  padding-top: 5rem;
-  padding-bottom: 10rem;
+  padding-top: 3rem;
+  padding-bottom: 6rem;
   background-color: var(--color-lighter-grey);
   scroll-snap-align: start;
 
@@ -79,13 +79,13 @@ const Container = styled.footer`
 `;
 
 const Footer = ({ data }) => {
-  const { footer, logos } = data ?? {};
+  const { footer, partners } = data ?? {};
 
   return (
     <Container>
       <InnerContainer>
         <nav>
-          <Logos data={logos} />
+          <Logos data={partners} />
           {footer ? <Paragraph>{footer}</Paragraph> : <Skeleton />}
         </nav>
       </InnerContainer>

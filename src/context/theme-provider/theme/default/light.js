@@ -20,7 +20,7 @@ export default {
     headingS: "2rem",
     headingM: "2.25rem",
     headingL: "3rem",
-    headingXL: "5.75rem"
+    headingXL: "5.5rem"
   },
   color: {
     ...color,
@@ -60,7 +60,8 @@ export default {
   },
   shadow: {
     small: "0 0 0.25rem rgba(0, 0, 0, .12)",
-    large: "0 0 0.5rem rgba(0, 0, 0, .12)"
+    medium: "0 0 0.5rem rgba(0, 0, 0, .12)",
+    large: "0 0.25rem 0.5rem rgba(0, 0, 0, 0.12)"
   },
   button: {
     primary: {

@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`
         --font-size-body-s: ${fontSize.bodyS};
         --font-size-body-m: ${fontSize.bodyM};
         --font-size-body-l: ${fontSize.bodyL};
+        --font-size-body-xl: ${fontSize.bodyXL};
         --font-size-heading-xs: ${fontSize.headingXS};
         --font-size-heading-s: ${fontSize.headingS};
         --font-size-heading-m: ${fontSize.headingM};
@@ -69,6 +70,7 @@ const GlobalStyle = createGlobalStyle`
         
         /* Shadow */
         --shadow-small: ${shadow.small};
+        --shadow-medium: ${shadow.medium};
         --shadow-large: ${shadow.large};
       }
       
@@ -107,11 +109,15 @@ const GlobalStyle = createGlobalStyle`
         height: auto
       }
       
-      .ant-skeleton-content {
-        .ant-skeleton {
-          &-title,
-          &-paragraph > li {
-            background: var(--color-light-grey);
+      .ant-skeleton {
+        &-content,
+        &-element {
+          .ant-skeleton {
+            &-title,
+            &-button,
+            &-paragraph > li {
+              background: var(--color-grey);
+            }
           }
         }
       }

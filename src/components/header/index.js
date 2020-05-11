@@ -21,7 +21,7 @@ const Container = styled.header`
   width: 100%;
   color: var(--color-main-body);
   background-color: var(--color-white);
-  box-shadow: var(--shadow-large);
+  box-shadow: var(--shadow-medium);
 
   nav {
     display: flex;
