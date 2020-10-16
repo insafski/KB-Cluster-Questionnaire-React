@@ -4,16 +4,16 @@ import styled from "styled-components";
 import About from "../components/sections/about";
 import Territories from "../components/sections/territories";
 import Participate from "../components/sections/participate";
-import Footer from "../components/footer";
 import { handleMinWidth } from "../utils";
 import { StateContext } from "../context";
+import Footer from "../components/footer";
 
 const Container = styled.div`
   max-height: 100vh;
   overflow-y: scroll;
 
   @media screen and (min-width: ${({ theme }) =>
-      handleMinWidth(theme.breakpoint.mobile)}) {
+      handleMinWidth(theme.breakpoint.tablet)}) {
     scroll-snap-type: y mandatory;
   }
 `;

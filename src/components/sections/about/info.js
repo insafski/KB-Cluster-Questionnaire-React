@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { Skeleton } from "antd";
-import { Link } from "react-router-dom";
 
 import Heading from "../../ui/heading";
 import Paragraph from "../../ui/paragraph";
 import Button from "../../ui/button";
+import Link from "../../ui/link";
+import ConditionalWrapper from "../../conditional-wrapper";
 import { API_HOST } from "../../../config";
 
 const Container = styled.div`
@@ -28,11 +29,13 @@ const Container = styled.div`
     width: 100%;
   }
 `;
-const LogosContainer = styled.div`
+const LogosContainer = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fill, 3rem);
   grid-gap: 3rem;
+  padding: 0;
   margin-bottom: 4rem;
+  list-style: none;
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
     grid-template-columns: repeat(auto-fill, 3rem);
@@ -52,17 +55,28 @@ const LogosContainer = styled.div`
   }
 `;
 
-const Info = ({ loading, name, description, logotypes }) => (
+const Info = ({ loading, name, description, partners }) => (
   <Container>
     {!loading && name && description ? (
       <>
         <LogosContainer>
-          {logotypes
-            .map(logo => logo.images)
+          {partners
+            .map(partner => partner.logos)
             .flat()
-            .map((image, i) => (
-              <img key={i} src={API_HOST + image.url} alt="" />
-            ))}
+            .map((logo, i) => {
+              const { link, image } = logo;
+
+              return (
+                <li key={i}>
+                  <ConditionalWrapper
+                    condition={link}
+                    wrapper={children => <a href={link}>{children}</a>}
+                  >
+                    <img src={API_HOST + image?.url} alt="" />
+                  </ConditionalWrapper>
+                </li>
+              );
+            })}
         </LogosContainer>
         <Heading as="h1">{name}</Heading>
         <Paragraph type="primary-bold">{description}</Paragraph>
@@ -72,6 +86,7 @@ const Info = ({ loading, name, description, logotypes }) => (
       </>
     ) : (
       <>
+        <Skeleton.Button />
         <Skeleton />
         <Skeleton.Button />
       </>

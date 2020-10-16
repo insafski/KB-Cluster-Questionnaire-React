@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-import { API_HOST } from "../config";
-import Text from "./ui/text";
+import { API_HOST } from "../../config";
+import Text from "../ui/text";
+import ConditionalWrapper from "../conditional-wrapper";
 
 const Container = styled.ul`
   display: grid;
@@ -55,19 +56,24 @@ const LogoWrapper = styled.div`
 const Logos = ({ data }) => (
   <Container>
     {data?.map((item, i) => {
-      const { name, images } = item ?? {};
+      const { name, logos } = item ?? {};
 
       return (
         <li key={i}>
           <LogoWrapper>
             {name && <Text type="option">{name}</Text>}
             <ul>
-              {images?.map((image, i) => {
-                const { url } = image ?? {};
+              {logos?.map((logo, i) => {
+                const { image, link } = logo ?? {};
 
                 return (
                   <li key={i}>
-                    <Logo src={API_HOST + url} alt="" />
+                    <ConditionalWrapper
+                      condition={link}
+                      wrapper={children => <a href={link}>{children}</a>}
+                    >
+                      <Logo src={API_HOST + image?.url} alt="" />
+                    </ConditionalWrapper>
                   </li>
                 );
               })}

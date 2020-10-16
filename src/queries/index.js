@@ -39,10 +39,14 @@ const CITY_QUERY = gql`
       }
       meta {
         footer
-        logos {
+        partners {
           name
-          images {
-            url
+          logos {
+            image {
+              url
+            }
+            link
+            name
           }
         }
       }
@@ -62,6 +66,19 @@ const FORM_QUERY = gql`
         id
         territories(where: { slug_ne: $slug }) {
           slug
+        }
+        meta {
+          footer
+          partners {
+            name
+            logos {
+              image {
+                url
+              }
+              link
+              name
+            }
+          }
         }
       }
     }

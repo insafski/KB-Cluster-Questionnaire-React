@@ -25,14 +25,16 @@ const Container = styled(Section)`
     right: 0;
     z-index: -1;
     background-image: linear-gradient(
-      to right,
-      var(--color-main-bg),
-      var(--color-primary)
-    );
-    background-size: cover;
-    background-position: center;
+        to right,
+        var(--color-main-bg),
+        var(--color-primary)
+      ),
+      linear-gradient(to right, var(--color-main-bg), var(--color-main-bg));
+    background-size: 150%;
+    background-position: left;
     background-repeat: no-repeat;
-    opacity: 0.3;
+    background-color: var(--color-main-bg);
+    opacity: 0.7;
   }
 `;
 const InnerContainer = styled.div`
@@ -43,17 +45,14 @@ const About = ({ data }) => {
   const {
     state: { loading }
   } = useContext(StateContext);
-  const { Name, description, background, latitude, longitude, meta } =
+  const { Name: name, description, background, latitude, longitude, meta } =
     data ?? {};
+  const { partners } = meta;
 
   return (
     <Container id="about" img={background?.url}>
       <InnerContainer>
-        <Info
-          {...{ loading, description }}
-          name={Name}
-          logotypes={meta?.logos}
-        />
+        <Info {...{ loading, name, description, partners }} />
       </InnerContainer>
       <BgMap {...{ latitude, longitude }} />
     </Container>

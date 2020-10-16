@@ -31,8 +31,20 @@ const Container = styled(Section)`
     &-wrapper {
       display: flex;
       align-items: baseline;
-      margin-bottom: 1rem;
+      margin-right: 0;
+      margin-bottom: 1.25rem;
+      padding: 1.2rem;
+      border: 0.125rem solid var(--color-grey-second);
+      border-radius: 0.5rem;
       white-space: normal;
+      transition: border 0.3s ease-in-out;
+
+      :hover,
+      :active,
+      :focus,
+      &-checked {
+        border: 0.125rem solid var(--color-primary);
+      }
     }
 
     &-group {
@@ -63,7 +75,12 @@ const List = styled.ul`
     padding-left: 4rem;
     text-indent: -4rem;
 
-    :before {
+    @media screen and (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
+      padding-left: 3rem;
+      text-indent: -3rem;
+    }
+
+    ::before {
       content: "";
       display: inline-block;
       margin-right: 1rem;
@@ -72,6 +89,11 @@ const List = styled.ul`
       background-color: var(--color-primary);
       text-indent: 4rem;
       vertical-align: super;
+
+      @media screen and (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
+        width: 2rem;
+        text-indent: 3rem;
+      }
     }
 
     :not(:last-child) {
@@ -84,18 +106,27 @@ const List = styled.ul`
   }
 `;
 
-const DescriptionContainer = styled.div`
+const InnerContainer = styled.div`
   display: grid;
   align-items: flex-start;
   grid-template-columns: repeat(
     auto-fill,
-    minmax(${({ theme }) => theme.breakpoint.mobile}, 1fr)
+    minmax(calc(${({ theme }) => theme.breakpoint.mobile} - 4rem), 1fr)
   );
   grid-column-gap: 6rem;
-  margin-bottom: 4rem;
+  grid-row-gap: 4rem;
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
     grid-template-columns: 1fr;
+  }
+`;
+const ControlsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+
+  a {
+    width: 100%;
   }
 `;
 
@@ -115,7 +146,7 @@ const Participate = ({ data }) => {
   return (
     <Container id="participate" bgColor="var(--color-secondary)">
       <Heading as="h2">Принять участие</Heading>
-      <DescriptionContainer>
+      <InnerContainer>
         <List>
           {items.map((item, i) => (
             <Text key={i} as="li" type="option">
@@ -124,35 +155,37 @@ const Participate = ({ data }) => {
           ))}
         </List>
         <Video {...{ videoId }} />
-      </DescriptionContainer>
-      {territories && (
-        <Radio.Group
-          onChange={e =>
-            dispatch({
-              type: "CHANGE_TERRITORY",
-              payload: e.target.value
-            })
-          }
-        >
-          {territories.map((item, i) => {
-            const { Name, slug } = item;
+        <ControlsContainer>
+          {territories && (
+            <Radio.Group
+              onChange={e =>
+                dispatch({
+                  type: "CHANGE_TERRITORY",
+                  payload: e.target.value
+                })
+              }
+            >
+              {territories.map((item, i) => {
+                const { Name, slug } = item;
 
-            return (
-              <Radio
-                key={i}
-                checked={slug === territory}
-                value={slug}
-                buttonStyle="solid"
-              >
-                <Text type="option">{Name}</Text>
-              </Radio>
-            );
-          })}
-        </Radio.Group>
-      )}
-      <Link to={`/form${territory ? `?t=${territory}` : ""}`}>
-        <Button type="primary">Перейти к опросу</Button>
-      </Link>
+                return (
+                  <Radio
+                    key={i}
+                    checked={slug === territory}
+                    value={slug}
+                    buttonStyle="solid"
+                  >
+                    <Text type="option">{Name}</Text>
+                  </Radio>
+                );
+              })}
+            </Radio.Group>
+          )}
+          <Link to={`/form${territory ? `?t=${territory}` : ""}`}>
+            <Button type="primary">Перейти к опросу</Button>
+          </Link>
+        </ControlsContainer>
+      </InnerContainer>
     </Container>
   );
 };

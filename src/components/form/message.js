@@ -7,6 +7,38 @@ import Link from "../ui/link";
 
 const Container = styled.div`
   background-color: var(--color-white);
+
+  .ant-result {
+    margin-bottom: 2rem;
+
+    @media screen and (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
+      padding: 2rem 1rem;
+    }
+
+    &-title {
+      color: var(--color-main-heading);
+      font-size: var(--font-size-heading-xs);
+      font-weight: var(--font-weight-heading);
+      line-height: var(--line-height-heading);
+    }
+
+    &-extra {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      > * {
+        display: block;
+        margin: 0;
+        padding: 0.5rem;
+
+        @media screen and (max-width: ${({ theme }) =>
+            theme.breakpoint.mobile}) {
+          width: 100%;
+        }
+      }
+    }
+  }
 `;
 
 const Message = ({ status, title, link }) => (

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Checkbox, Form as AntForm } from "antd";
 import styled from "styled-components";
-import Link from "../ui/link";
 
 import Card from "./card";
 import FormGroup from "./form-group";
 import Button from "../ui/button";
 import Heading from "../ui/heading";
 import Text from "../ui/text";
+import Link from "../ui/link";
 
 const Container = styled.div`
   ${Text} + .ant-checkbox-wrapper {
