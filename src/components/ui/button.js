@@ -47,7 +47,7 @@ const Button = styled(AntButton)`
       :active,
       :hover,
       :focus {
-        background-color: var(--color-grey-second);
+        filter: saturate(2);
       }
     }
 

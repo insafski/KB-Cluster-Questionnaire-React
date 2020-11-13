@@ -15,7 +15,7 @@ const Container = styled.div`
       grid-template-rows: 1fr;
       grid-auto-flow: row;
 
-      span:not(:last-child) {
+      span {
         margin-bottom: 1rem;
       }
     }
@@ -37,7 +37,7 @@ const Numbers = ({ data }) => {
     text: ({ children }) => <span {...{ children }} />,
     strong: ({ children }) => (
       <Statistic value={children?.[0]?.props?.children} />
-    )
+    ),
   };
 
   return (

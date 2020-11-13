@@ -37,7 +37,6 @@ const Container = styled.footer`
         display: flex;
         flex-direction: column;
         margin-bottom: 2.5rem;
-        white-space: nowrap;
       }
 
       a {

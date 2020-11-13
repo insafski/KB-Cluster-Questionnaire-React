@@ -133,14 +133,14 @@ const ControlsContainer = styled.div`
 const items = [
   "Прослушайте короткую презентацию",
   "Ответьте на несколько вопросов",
-  "Ваши ответы помогут архитекторам разработать проект, отвечающий реальным потребностям жителей"
+  "Ваши ответы помогут архитекторам разработать проект, отвечающий реальным потребностям жителей",
 ];
 
 const Participate = ({ data }) => {
   const { state, dispatch } = useContext(StateContext);
   const { territory } = state;
   const { territories } = data ?? {};
-  const videoId = territories?.filter(item => item.slug === territory)?.[0]
+  const videoId = territories?.filter((item) => item.slug === territory)?.[0]
     ?.videoId;
 
   return (
@@ -158,10 +158,10 @@ const Participate = ({ data }) => {
         <ControlsContainer>
           {territories && (
             <Radio.Group
-              onChange={e =>
+              onChange={(e) =>
                 dispatch({
                   type: "CHANGE_TERRITORY",
-                  payload: e.target.value
+                  payload: e.target.value,
                 })
               }
             >

@@ -27,7 +27,6 @@ const LogoWrapper = styled.div`
   flex-direction: column;
   padding: 2.75rem 2.25rem;
   width: 100%;
-  height: 100%;
   background-color: var(--color-white);
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
@@ -70,7 +69,7 @@ const Logos = ({ data }) => (
                   <li key={i}>
                     <ConditionalWrapper
                       condition={link}
-                      wrapper={children => <a href={link}>{children}</a>}
+                      wrapper={(children) => <a href={link}>{children}</a>}
                     >
                       <Logo src={API_HOST + image?.url} alt="" />
                     </ConditionalWrapper>

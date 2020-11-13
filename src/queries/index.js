@@ -17,6 +17,9 @@ const CITY_QUERY = gql`
         Name
         Description
         PresentationVideoLink
+        PresentationPdf {
+          url
+        }
         LeadMap {
           url
         }

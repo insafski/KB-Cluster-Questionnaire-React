@@ -24,6 +24,7 @@ const Container = styled(Form.Item)`
     }
 
     &-checkbox {
+      width: 19px;
       :hover,
       &-wrapper:hover {
         .ant-checkbox-inner {
@@ -119,18 +120,18 @@ const FormItem = ({ name, label, required, item }) => {
           {
             type: "email",
             message: "Введите корректный email",
-            required
-          }
+            required,
+          },
         ];
       case "checkbox":
       case "radio":
         return [
           {
             type: "array",
-            transform: value => value || undefined,
+            transform: (value) => value || undefined,
             message: "Выберите один из вариантов",
-            required
-          }
+            required,
+          },
         ];
       default:
         return [{ required }];

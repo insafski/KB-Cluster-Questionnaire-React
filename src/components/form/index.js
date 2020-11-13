@@ -23,7 +23,7 @@ const Container = styled.div`
 `;
 
 const validateMessages = {
-  required: "Обязательное поле"
+  required: "Обязательное поле",
 };
 
 const SurveyForm = ({ fields, onFinish }) => {
@@ -45,10 +45,11 @@ const SurveyForm = ({ fields, onFinish }) => {
         <Card>
           <Heading as="h4">Спасибо за уделенное время!</Heading>
           <Text>
-            Спасибо за ваше участие! <br/>
-            Все ответы будут обязательно проанализированы и учтены при разработке проекта!
+            Спасибо за Ваше участие! <br />
+            Все ответы будут обязательно проанализированы и учтены при
+            разработке проекта!
           </Text>
-          <Checkbox onChange={e => setDisabled(!e.target.checked)}>
+          <Checkbox onChange={(e) => setDisabled(!e.target.checked)}>
             Настоящим подтверждаю, что я ознакомлен и согласен с условиями
             политики конфиденциальности. <Link to="/policy">Узнать больше</Link>
           </Checkbox>
