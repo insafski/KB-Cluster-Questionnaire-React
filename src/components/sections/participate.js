@@ -146,8 +146,6 @@ const Participate = ({ data }) => {
   console.log(state);
   const { territory } = state;
   const { territories } = data ?? {};
-  const videoId = territories?.filter((item) => item.slug === territory)?.[0]
-    ?.videoId;
   const PresentationPdfUrl = territories?.filter(
     (item) => item.slug === territory
   )?.[0]?.PresentationPdf.url;

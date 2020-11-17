@@ -55,7 +55,7 @@ const Info = styled(ReactMarkdown)`
 `;
 
 const Tab = ({ data, isTablet }) => {
-  const { Name, Description, map, LeadMapMeta, PresentationPdf } = data;
+  const { Name, Description, map, LeadMapMeta } = data;
 
   return (
     <Container>
