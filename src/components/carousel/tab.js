@@ -1,12 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
-import { API_HOST } from "../../config";
 
 import Heading from "../ui/heading";
 import Numbers from "./numbers";
 import Map from "./map";
-import Button from "../ui/button";
 
 const Container = styled.div`
   display: grid;
@@ -65,13 +63,6 @@ const Tab = ({ data, isTablet }) => {
         <Heading as="h3">{Name}</Heading>
         <Info source={Description || "Нет описания"} />
         <Numbers data={LeadMapMeta} />
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={API_HOST + PresentationPdf?.url}
-        >
-          <Button type="primary">Скачать презентацию</Button>
-        </a>
       </Meta>
       <Map data={map} {...{ isTablet }} />
     </Container>

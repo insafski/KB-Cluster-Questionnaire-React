@@ -2,13 +2,13 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Radio } from "antd";
+import { API_HOST } from "../../config";
 
 import { StateContext } from "../../context";
 import Section from "../section";
 import Button from "../ui/button";
 import Heading from "../ui/heading";
 import Text from "../ui/text";
-import Video from "../video";
 
 const Container = styled(Section)`
   flex-direction: column;
@@ -130,6 +130,10 @@ const ControlsContainer = styled.div`
   }
 `;
 
+const ButtonContainer = styled.div`
+  margin-bottom: 1rem;
+`;
+
 const items = [
   "Прослушайте короткую презентацию",
   "Ответьте на несколько вопросов",
@@ -137,11 +141,18 @@ const items = [
 ];
 
 const Participate = ({ data }) => {
+  console.log(data);
   const { state, dispatch } = useContext(StateContext);
+  console.log(state);
   const { territory } = state;
   const { territories } = data ?? {};
   const videoId = territories?.filter((item) => item.slug === territory)?.[0]
     ?.videoId;
+  const PresentationPdfUrl = territories?.filter(
+    (item) => item.slug === territory
+  )?.[0]?.PresentationPdf.url;
+
+  console.log(PresentationPdfUrl);
 
   return (
     <Container id="participate" bgColor="var(--color-secondary)">
@@ -154,7 +165,7 @@ const Participate = ({ data }) => {
             </Text>
           ))}
         </List>
-        <Video {...{ videoId }} />
+
         <ControlsContainer>
           {territories && (
             <Radio.Group
@@ -181,6 +192,16 @@ const Participate = ({ data }) => {
               })}
             </Radio.Group>
           )}
+
+          <ButtonContainer>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={API_HOST + PresentationPdfUrl}
+            >
+              <Button type="primary">Скачать презентацию</Button>
+            </a>
+          </ButtonContainer>
           <Link to={`/form${territory ? `?t=${territory}` : ""}`}>
             <Button type="primary">Перейти к опросу</Button>
           </Link>
